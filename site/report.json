@@ -7,11 +7,11 @@
     },
     "item": [
       {
-        "id": "e8c58236-19d7-4f49-b7df-eb7aafcca6ef",
+        "id": "37e6eab0-fbfd-483b-a182-b24e753831e6",
         "name": "Usuario",
         "item": [
           {
-            "id": "ec43631d-724d-487b-93d3-02e5c07ab523",
+            "id": "c91f5f4d-09b3-4330-b975-f472676215a7",
             "name": "Criar usuario",
             "request": {
               "url": {
@@ -42,7 +42,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "4fcbd0ed-afa3-4a62-8799-d74843c858c6",
+                  "id": "685d7b55-238b-4aaf-b9ee-835d741e1b53",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -57,13 +57,13 @@
                     "pm.collectionVariables.set('novo_email', `admin.${Date.now()}@qa.com.br`);\r",
                     ""
                   ],
-                  "_lastExecutionId": "1099076e-e320-4ccf-8215-673e7f28c2fa"
+                  "_lastExecutionId": "2dcac299-7e2d-49fd-ad8a-50a561768607"
                 }
               },
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "775e3784-aa29-4c15-a055-29bb26cb1e12",
+                  "id": "5f64bd45-c8d2-45ee-a066-40178f8cbe4a",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -73,13 +73,13 @@
                     "postman.setNextRequest(\"Login\");\r",
                     ""
                   ],
-                  "_lastExecutionId": "7715d7eb-7fc2-4b79-96ea-8d7802dd20e1"
+                  "_lastExecutionId": "f8ee4aae-4e12-499b-a8c8-638343c42861"
                 }
               }
             ]
           },
           {
-            "id": "93d9b62f-a8d5-4f42-8bd1-1a3ef84ee546",
+            "id": "e90910a2-8786-411e-980c-73a8928a618a",
             "name": "Login",
             "request": {
               "url": {
@@ -126,7 +126,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "83a6cab8-9185-484b-9ed9-6fb9bab12a28",
+                  "id": "ee44e70b-a935-4e6d-a1b5-4611a88386a4",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -138,25 +138,25 @@
                     "pm.collectionVariables.set(\"token\", j.authorization.replace(/^Bearer\\s+/, \"\")); // \"x.y.z\"\r",
                     ""
                   ],
-                  "_lastExecutionId": "f0b8a108-0d23-4c0b-89d7-57f00e446f27"
+                  "_lastExecutionId": "2d137030-8802-4f04-b206-3424dcd321f9"
                 }
               },
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "9c6be2ec-8b64-450b-bdb9-8b72054091c4",
+                  "id": "0ed8f609-534a-4822-b03f-e68152e21fb6",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
                     ""
                   ],
-                  "_lastExecutionId": "ffd2c3ae-8872-4dc4-933f-eb675e6c043d"
+                  "_lastExecutionId": "2fcd173f-dee8-4d0b-a40b-183a63646f69"
                 }
               }
             ]
           },
           {
-            "id": "5ab91439-a63b-4ae0-a4aa-bc307ce0be15",
+            "id": "d7400c27-a2df-4870-8ff6-3f8c9a2b6992",
             "name": "Listar usuario",
             "request": {
               "url": {
@@ -191,13 +191,13 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "4650dc8c-d010-4a15-b38f-67fcd4beaee3",
+                  "id": "c319fa43-3e83-4c38-841e-3d0d79d63674",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
                     ""
                   ],
-                  "_lastExecutionId": "9dc32526-914b-4680-86eb-ff574f956149"
+                  "_lastExecutionId": "97edb0f1-71e3-44e6-9a2a-2efdf7709a41"
                 }
               }
             ],
@@ -209,11 +209,11 @@
         "event": []
       },
       {
-        "id": "666fa94a-b281-4f87-927c-1b987f3d5dfb",
+        "id": "e5671abc-45a3-4ff0-bd8a-7813399a0b34",
         "name": "Produtos",
         "item": [
           {
-            "id": "cf810233-b656-4902-9c32-c6d355322958",
+            "id": "5fa1346b-f5a4-4800-b0c8-6974e9d95fd6",
             "name": "Cadastrar produto",
             "request": {
               "url": {
@@ -260,7 +260,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "c00d1cbf-cc3f-451b-b99b-3d4be41a85e9",
+                  "id": "a6f1c1f7-bb74-4669-b18f-fd16880a02f6",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -273,13 +273,13 @@
                     "pm.collectionVariables.set('prod_id', body._id);\r",
                     ""
                   ],
-                  "_lastExecutionId": "8dc60cc9-6ca0-4439-89c9-db1c4e7fcde4"
+                  "_lastExecutionId": "38679127-2c98-4727-a3ba-05d058ef881c"
                 }
               },
               {
                 "listen": "prerequest",
                 "script": {
-                  "id": "0840e2aa-e663-4f30-9745-aa97ac5d3502",
+                  "id": "2b1cc6be-6ce6-49bc-a97f-b5773b57c2c7",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -289,13 +289,13 @@
                     "pm.collectionVariables.set('quantidade', 381);\r",
                     ""
                   ],
-                  "_lastExecutionId": "bfbbfec1-f3cc-4655-9545-3f1c5976ee1d"
+                  "_lastExecutionId": "cf467673-3997-4627-ae35-7424fbbaf909"
                 }
               }
             ]
           },
           {
-            "id": "f34f6b2e-4d89-48ca-8fa1-9aeaf12ce8bd",
+            "id": "f41d4a46-2f1d-4587-9ae0-d66c15700147",
             "name": "Listar produto",
             "request": {
               "url": {
@@ -338,7 +338,7 @@
             }
           },
           {
-            "id": "202ef8e8-4c75-4109-afbb-4f3c773197f4",
+            "id": "2283464c-d2d5-47e1-aefb-f05688946abd",
             "name": "Editar produto",
             "request": {
               "url": {
@@ -380,20 +380,20 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "b7dd2734-751a-44f9-9019-b3e49ca7ccce",
+                  "id": "62239ab5-4365-4c23-88ae-b7befbc1ba2f",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
                     "pm.test('Status 200/201', () => pm.expect(pm.response.code).to.be.oneOf([200, 201]));\r",
                     ""
                   ],
-                  "_lastExecutionId": "f60cf099-da17-4894-8609-b57961f27f5f"
+                  "_lastExecutionId": "6883fb79-d93a-49f8-a965-8beb94b43a46"
                 }
               }
             ]
           },
           {
-            "id": "144bfb7f-c1e5-4911-9994-e97189b869a1",
+            "id": "027d39ad-9648-4d58-869a-0bbc5565e01a",
             "name": "Excluir produto",
             "request": {
               "url": {
@@ -435,7 +435,7 @@
               {
                 "listen": "test",
                 "script": {
-                  "id": "82f53837-44f6-4015-ae32-dc583944680a",
+                  "id": "f39e94ec-5ddd-464d-aae9-c82bf05a21fa",
                   "type": "text/javascript",
                   "packages": {},
                   "exec": [
@@ -443,7 +443,7 @@
                     "pm.test('Registro removido', () => pm.expect(pm.response.text()).to.include('Registro excluído com sucesso'));\r",
                     ""
                   ],
-                  "_lastExecutionId": "7b5e8ebe-bd32-4444-ab9f-b14550e4fe8c"
+                  "_lastExecutionId": "fd9487bf-d7ee-4f6a-99f8-80df87de9fc5"
                 }
               }
             ]
@@ -507,11 +507,11 @@
     }
   },
   "environment": {
-    "id": "ac8dee9c-620b-426b-bf22-6f6134d6804b",
+    "id": "ebe3d6d4-12c4-4eee-95f6-ef57620420d2",
     "values": []
   },
   "globals": {
-    "id": "19dc4d22-3156-4b2c-a05a-2ad66910e9f0",
+    "id": "e1ef5761-3efa-4d3c-85cb-5317e9ab18c7",
     "values": []
   },
   "run": {
@@ -563,10 +563,10 @@
       }
     },
     "timings": {
-      "responseAverage": 10.571428571428571,
-      "responseMin": 4,
-      "responseMax": 32,
-      "responseSd": 9.131689608283933,
+      "responseAverage": 14.714285714285714,
+      "responseMin": 5,
+      "responseMax": 34,
+      "responseSd": 12.032269536711752,
       "dnsAverage": 0,
       "dnsMin": 0,
       "dnsMax": 0,
@@ -575,8 +575,8 @@
       "firstByteMin": 0,
       "firstByteMax": 0,
       "firstByteSd": 0,
-      "started": 1773170046558,
-      "completed": 1773170046763
+      "started": 1773170321558,
+      "completed": 1773170321801
     },
     "executions": [
       {
@@ -589,11 +589,11 @@
           "eof": false,
           "bof": true,
           "cr": false,
-          "ref": "9b34c511-59fe-4c70-b4b3-429867d241b5",
-          "httpRequestId": "830b84f5-068a-46d7-95af-66076cfe2452"
+          "ref": "2b974553-dba4-447f-a66b-49eb6178167c",
+          "httpRequestId": "54eb1cce-8ed1-4661-85e6-9f9fdeb33932"
         },
         "item": {
-          "id": "ec43631d-724d-487b-93d3-02e5c07ab523",
+          "id": "c91f5f4d-09b3-4330-b975-f472676215a7",
           "name": "Criar usuario",
           "request": {
             "url": {
@@ -624,7 +624,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "4fcbd0ed-afa3-4a62-8799-d74843c858c6",
+                "id": "685d7b55-238b-4aaf-b9ee-835d741e1b53",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -639,13 +639,13 @@
                   "pm.collectionVariables.set('novo_email', `admin.${Date.now()}@qa.com.br`);\r",
                   ""
                 ],
-                "_lastExecutionId": "1099076e-e320-4ccf-8215-673e7f28c2fa"
+                "_lastExecutionId": "2dcac299-7e2d-49fd-ad8a-50a561768607"
               }
             },
             {
               "listen": "prerequest",
               "script": {
-                "id": "775e3784-aa29-4c15-a055-29bb26cb1e12",
+                "id": "5f64bd45-c8d2-45ee-a066-40178f8cbe4a",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -655,7 +655,7 @@
                   "postman.setNextRequest(\"Login\");\r",
                   ""
                 ],
-                "_lastExecutionId": "7715d7eb-7fc2-4b79-96ea-8d7802dd20e1"
+                "_lastExecutionId": "f8ee4aae-4e12-499b-a8c8-638343c42861"
               }
             }
           ]
@@ -696,7 +696,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "5eeac27a-1f97-43d9-b57d-c9d35afb3183",
+              "value": "c5bdceec-d9a7-45b0-b88e-ed5eba3e85cb",
               "system": true
             },
             {
@@ -723,7 +723,7 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\r\n  \"nome\": \"Admin QAQQQ\",\r\n  \"email\": \"admin.1773170046571@qa.com.br\",\r\n  \"password\": \"1234\",\r\n  \"administrador\": \"true\"\r\n}\r\n",
+            "raw": "{\r\n  \"nome\": \"Admin QAQQQ\",\r\n  \"email\": \"admin.1773170321573@qa.com.br\",\r\n  \"password\": \"1234\",\r\n  \"administrador\": \"true\"\r\n}\r\n",
             "options": {
               "raw": {
                 "language": "json"
@@ -732,7 +732,7 @@
           }
         },
         "response": {
-          "id": "2fc0583a-0b27-49af-b522-fd5e4a47e2b3",
+          "id": "82f6a57b-ac0c-498e-a429-582f624b2337",
           "status": "Created",
           "code": 201,
           "header": [
@@ -774,7 +774,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 10 Mar 2026 19:14:06 GMT"
+              "value": "Tue, 10 Mar 2026 19:18:41 GMT"
             },
             {
               "key": "Connection",
@@ -851,32 +851,32 @@
               58,
               32,
               34,
-              106,
-              74,
-              113,
+              116,
+              99,
               111,
-              98,
-              86,
-              122,
+              55,
               54,
-              73,
-              102,
-              87,
-              71,
-              88,
-              120,
-              74,
-              97,
+              100,
+              53,
+              103,
+              65,
+              98,
+              84,
+              101,
+              54,
+              66,
+              55,
+              101,
               34,
               10,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 32,
+          "responseTime": 34,
           "responseSize": 82
         },
-        "id": "ec43631d-724d-487b-93d3-02e5c07ab523",
+        "id": "c91f5f4d-09b3-4330-b975-f472676215a7",
         "assertions": [
           {
             "assertion": "Validar mensagem de sucesso",
@@ -890,15 +890,15 @@
       },
       {
         "cursor": {
-          "ref": "065a0d71-d7dc-439e-98c6-73ba15140684",
+          "ref": "76194f95-3436-4120-a5df-b325b54135f7",
           "length": 7,
           "cycles": 1,
           "position": 1,
           "iteration": 0,
-          "httpRequestId": "9f2feef8-eed5-4612-8b60-b2b498ffa675"
+          "httpRequestId": "406c165c-26ef-4706-890f-31c2914c0147"
         },
         "item": {
-          "id": "93d9b62f-a8d5-4f42-8bd1-1a3ef84ee546",
+          "id": "e90910a2-8786-411e-980c-73a8928a618a",
           "name": "Login",
           "request": {
             "url": {
@@ -945,7 +945,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "83a6cab8-9185-484b-9ed9-6fb9bab12a28",
+                "id": "ee44e70b-a935-4e6d-a1b5-4611a88386a4",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -957,19 +957,19 @@
                   "pm.collectionVariables.set(\"token\", j.authorization.replace(/^Bearer\\s+/, \"\")); // \"x.y.z\"\r",
                   ""
                 ],
-                "_lastExecutionId": "f0b8a108-0d23-4c0b-89d7-57f00e446f27"
+                "_lastExecutionId": "2d137030-8802-4f04-b206-3424dcd321f9"
               }
             },
             {
               "listen": "prerequest",
               "script": {
-                "id": "9c6be2ec-8b64-450b-bdb9-8b72054091c4",
+                "id": "0ed8f609-534a-4822-b03f-e68152e21fb6",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
                   ""
                 ],
-                "_lastExecutionId": "ffd2c3ae-8872-4dc4-933f-eb675e6c043d"
+                "_lastExecutionId": "2fcd173f-dee8-4d0b-a40b-183a63646f69"
               }
             }
           ]
@@ -1009,7 +1009,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "32231ff4-c4b0-41f6-8c52-cc8d49b87647",
+              "value": "b4444e08-e391-40ff-a937-f31345005940",
               "system": true
             },
             {
@@ -1055,7 +1055,7 @@
           }
         },
         "response": {
-          "id": "e26c9f3e-e179-44f5-808f-1af7ac10c3c3",
+          "id": "a76b8eb0-c8ff-4d6f-a43f-b9950d4a761c",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1097,7 +1097,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 10 Mar 2026 19:14:06 GMT"
+              "value": "Tue, 10 Mar 2026 19:18:41 GMT"
             },
             {
               "key": "Connection",
@@ -1302,9 +1302,9 @@
               99,
               119,
               77,
-              68,
-              81,
-              50,
+              122,
+              73,
+              120,
               76,
               67,
               74,
@@ -1324,65 +1324,65 @@
               78,
               122,
               65,
-              50,
-              78,
-              68,
-              90,
+              53,
+              77,
+              106,
+              70,
               57,
               46,
-              76,
-              99,
+              111,
+              66,
+              95,
+              50,
+              79,
+              78,
+              73,
+              57,
+              70,
               116,
-              107,
-              84,
-              85,
-              67,
-              109,
-              69,
+              117,
+              72,
+              74,
+              104,
+              106,
+              78,
+              101,
+              111,
               97,
-              109,
-              99,
-              83,
+              77,
+              51,
               108,
               99,
-              84,
-              52,
-              80,
-              49,
-              76,
-              49,
-              109,
-              116,
-              77,
-              66,
-              104,
-              86,
-              50,
+              68,
+              79,
+              121,
+              53,
+              118,
+              118,
+              117,
+              81,
+              95,
+              111,
+              75,
               88,
-              87,
-              51,
-              72,
-              49,
-              116,
-              84,
-              105,
-              85,
-              69,
-              82,
-              100,
+              120,
               55,
-              87,
-              56,
+              100,
+              77,
+              114,
+              48,
+              85,
+              65,
               34,
               10,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 7,
+          "responseTime": 8,
           "responseSize": 265
         },
-        "id": "93d9b62f-a8d5-4f42-8bd1-1a3ef84ee546",
+        "id": "e90910a2-8786-411e-980c-73a8928a618a",
         "assertions": [
           {
             "assertion": "Status 200",
@@ -1392,15 +1392,15 @@
       },
       {
         "cursor": {
-          "ref": "ab334de2-09cc-4a48-b5fa-dab6a31f7ada",
+          "ref": "6794a360-af80-4550-bb4c-30a3d4b2afe6",
           "length": 7,
           "cycles": 1,
           "position": 2,
           "iteration": 0,
-          "httpRequestId": "8dd02d10-c8ff-46a6-ae75-5ea7a36d55de"
+          "httpRequestId": "c7d6252d-47dd-47f1-981c-17005fb40688"
         },
         "item": {
-          "id": "5ab91439-a63b-4ae0-a4aa-bc307ce0be15",
+          "id": "d7400c27-a2df-4870-8ff6-3f8c9a2b6992",
           "name": "Listar usuario",
           "request": {
             "url": {
@@ -1435,13 +1435,13 @@
             {
               "listen": "test",
               "script": {
-                "id": "4650dc8c-d010-4a15-b38f-67fcd4beaee3",
+                "id": "c319fa43-3e83-4c38-841e-3d0d79d63674",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
                   ""
                 ],
-                "_lastExecutionId": "9dc32526-914b-4680-86eb-ff574f956149"
+                "_lastExecutionId": "97edb0f1-71e3-44e6-9a2a-2efdf7709a41"
               }
             }
           ],
@@ -1485,7 +1485,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "70afa2e4-42cb-49ef-995b-2a0b38121959",
+              "value": "d65c2fc9-2f1c-48b7-b798-f383a4916d3e",
               "system": true
             },
             {
@@ -1512,7 +1512,7 @@
           "method": "GET",
           "body": {
             "mode": "raw",
-            "raw": "{\r\n  \"email\": \"admin.qa+1773170047@qa.com.br\",\r\n  \"password\": \"1234\"\r\n}\r\n",
+            "raw": "{\r\n  \"email\": \"admin.qa+1773170322@qa.com.br\",\r\n  \"password\": \"1234\"\r\n}\r\n",
             "options": {
               "raw": {
                 "language": "json"
@@ -1525,7 +1525,7 @@
           }
         },
         "response": {
-          "id": "274f9ae5-3378-4fcc-bf52-8a7527b25ddf",
+          "id": "37e4fc92-e78d-41eb-9a6d-223fadf0c49e",
           "status": "OK",
           "code": 200,
           "header": [
@@ -1567,7 +1567,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 10 Mar 2026 19:14:06 GMT"
+              "value": "Tue, 10 Mar 2026 19:18:41 GMT"
             },
             {
               "key": "Connection",
@@ -1908,12 +1908,12 @@
               49,
               55,
               48,
-              48,
-              52,
-              54,
+              51,
+              50,
+              49,
               53,
               55,
-              49,
+              51,
               64,
               113,
               97,
@@ -2016,22 +2016,22 @@
               58,
               32,
               34,
-              106,
-              74,
-              113,
+              116,
+              99,
               111,
-              98,
-              86,
-              122,
+              55,
               54,
-              73,
-              102,
-              87,
-              71,
-              88,
-              120,
-              74,
-              97,
+              100,
+              53,
+              103,
+              65,
+              98,
+              84,
+              101,
+              54,
+              66,
+              55,
+              101,
               34,
               10,
               32,
@@ -2054,22 +2054,22 @@
             ]
           },
           "cookie": [],
-          "responseTime": 4,
+          "responseTime": 5,
           "responseSize": 470
         },
-        "id": "5ab91439-a63b-4ae0-a4aa-bc307ce0be15"
+        "id": "d7400c27-a2df-4870-8ff6-3f8c9a2b6992"
       },
       {
         "cursor": {
-          "ref": "80880be9-2688-4f2c-b472-a7fd17900a08",
+          "ref": "c79ab7e1-684d-46ef-98ef-0504709dc9ce",
           "length": 7,
           "cycles": 1,
           "position": 3,
           "iteration": 0,
-          "httpRequestId": "6753a4ba-eeb7-4c05-972c-9f7b12cd1b6f"
+          "httpRequestId": "b94b08a3-2a4c-4b59-bb27-919dfc3465ee"
         },
         "item": {
-          "id": "cf810233-b656-4902-9c32-c6d355322958",
+          "id": "5fa1346b-f5a4-4800-b0c8-6974e9d95fd6",
           "name": "Cadastrar produto",
           "request": {
             "url": {
@@ -2116,7 +2116,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "c00d1cbf-cc3f-451b-b99b-3d4be41a85e9",
+                "id": "a6f1c1f7-bb74-4669-b18f-fd16880a02f6",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -2129,13 +2129,13 @@
                   "pm.collectionVariables.set('prod_id', body._id);\r",
                   ""
                 ],
-                "_lastExecutionId": "8dc60cc9-6ca0-4439-89c9-db1c4e7fcde4"
+                "_lastExecutionId": "38679127-2c98-4727-a3ba-05d058ef881c"
               }
             },
             {
               "listen": "prerequest",
               "script": {
-                "id": "0840e2aa-e663-4f30-9745-aa97ac5d3502",
+                "id": "2b1cc6be-6ce6-49bc-a97f-b5773b57c2c7",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -2145,7 +2145,7 @@
                   "pm.collectionVariables.set('quantidade', 381);\r",
                   ""
                 ],
-                "_lastExecutionId": "bfbbfec1-f3cc-4655-9545-3f1c5976ee1d"
+                "_lastExecutionId": "cf467673-3997-4627-ae35-7424fbbaf909"
               }
             }
           ]
@@ -2171,7 +2171,7 @@
             },
             {
               "key": "Authorization",
-              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
               "system": true
             },
             {
@@ -2191,7 +2191,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "136984d7-ce84-430a-b167-4c58056c5beb",
+              "value": "27ffdf47-84bb-4916-a6eb-11d7b025b56f",
               "system": true
             },
             {
@@ -2218,7 +2218,7 @@
           "method": "POST",
           "body": {
             "mode": "raw",
-            "raw": "{\r\n  \"nome\": \"Teclado kabum 1773170046678\",\r\n  \"preco\": 350,\r\n  \"descricao\": \"perifericos\",\r\n  \"quantidade\": 381\r\n}\r\n",
+            "raw": "{\r\n  \"nome\": \"Teclado kabum 1773170321686\",\r\n  \"preco\": 350,\r\n  \"descricao\": \"perifericos\",\r\n  \"quantidade\": 381\r\n}\r\n",
             "options": {
               "raw": {
                 "language": "json"
@@ -2230,14 +2230,14 @@
             "bearer": [
               {
                 "type": "string",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
                 "key": "token"
               }
             ]
           }
         },
         "response": {
-          "id": "2ba19dbe-801b-4883-9968-c558da1c2dea",
+          "id": "157609f6-706c-47b4-be16-3acb5060257a",
           "status": "Created",
           "code": 201,
           "header": [
@@ -2279,7 +2279,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 10 Mar 2026 19:14:06 GMT"
+              "value": "Tue, 10 Mar 2026 19:18:41 GMT"
             },
             {
               "key": "Connection",
@@ -2356,32 +2356,32 @@
               58,
               32,
               34,
-              53,
-              106,
-              71,
-              99,
-              53,
-              89,
-              84,
-              113,
-              69,
-              67,
+              65,
               55,
-              77,
-              87,
+              72,
+              106,
               73,
-              89,
-              122,
+              120,
+              84,
+              76,
+              50,
+              116,
+              51,
+              71,
+              69,
+              78,
+              117,
+              50,
               34,
               10,
               125
             ]
           },
           "cookie": [],
-          "responseTime": 12,
+          "responseTime": 33,
           "responseSize": 82
         },
-        "id": "cf810233-b656-4902-9c32-c6d355322958",
+        "id": "5fa1346b-f5a4-4800-b0c8-6974e9d95fd6",
         "assertions": [
           {
             "assertion": "Status 201",
@@ -2391,15 +2391,15 @@
       },
       {
         "cursor": {
-          "ref": "6775f37d-2606-41c2-a235-f04f2f31ae22",
+          "ref": "f09f2e2f-2b37-4a56-bd2a-a7eca27fa78b",
           "length": 7,
           "cycles": 1,
           "position": 4,
           "iteration": 0,
-          "httpRequestId": "414dc0fd-e0d4-4419-a7e1-0dd0d84d7f38"
+          "httpRequestId": "0ad9b93b-4d59-4e22-adcd-e20670f57e72"
         },
         "item": {
-          "id": "f34f6b2e-4d89-48ca-8fa1-9aeaf12ce8bd",
+          "id": "f41d4a46-2f1d-4587-9ae0-d66c15700147",
           "name": "Listar produto",
           "request": {
             "url": {
@@ -2457,7 +2457,7 @@
           "header": [
             {
               "key": "Authorization",
-              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
               "system": true
             },
             {
@@ -2477,7 +2477,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "9ae2cccf-bc67-46da-906c-0eeece382b61",
+              "value": "93a43f95-eab1-40fe-97ab-1da756921135",
               "system": true
             },
             {
@@ -2511,14 +2511,14 @@
             "bearer": [
               {
                 "type": "string",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
                 "key": "token"
               }
             ]
           }
         },
         "response": {
-          "id": "d3219683-e593-40a5-933c-8f7a1152b38a",
+          "id": "d31ef7b0-6b57-4827-8900-4e21d1b73cd9",
           "status": "OK",
           "code": 200,
           "header": [
@@ -2560,7 +2560,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 10 Mar 2026 19:14:06 GMT"
+              "value": "Tue, 10 Mar 2026 19:18:41 GMT"
             },
             {
               "key": "Connection",
@@ -2667,12 +2667,12 @@
               49,
               55,
               48,
-              48,
-              52,
+              51,
+              50,
+              49,
               54,
-              54,
-              55,
               56,
+              54,
               34,
               44,
               10,
@@ -2793,22 +2793,22 @@
               58,
               32,
               34,
-              53,
-              106,
-              71,
-              99,
-              53,
-              89,
-              84,
-              113,
-              69,
-              67,
+              65,
               55,
-              77,
-              87,
+              72,
+              106,
               73,
-              89,
-              122,
+              120,
+              84,
+              76,
+              50,
+              116,
+              51,
+              71,
+              69,
+              78,
+              117,
+              50,
               34,
               10,
               32,
@@ -3219,22 +3219,22 @@
             ]
           },
           "cookie": [],
-          "responseTime": 4,
+          "responseTime": 5,
           "responseSize": 642
         },
-        "id": "f34f6b2e-4d89-48ca-8fa1-9aeaf12ce8bd"
+        "id": "f41d4a46-2f1d-4587-9ae0-d66c15700147"
       },
       {
         "cursor": {
-          "ref": "8c918458-29b1-420d-8ed4-0c8be677f9da",
+          "ref": "01e529f1-e8ba-4ceb-9c8e-5961e82b683e",
           "length": 7,
           "cycles": 1,
           "position": 5,
           "iteration": 0,
-          "httpRequestId": "871fb24d-ec3d-42ab-be2c-5c6175c1975c"
+          "httpRequestId": "58280e8b-34ce-4722-95c4-c9f8d84fbfc5"
         },
         "item": {
-          "id": "202ef8e8-4c75-4109-afbb-4f3c773197f4",
+          "id": "2283464c-d2d5-47e1-aefb-f05688946abd",
           "name": "Editar produto",
           "request": {
             "url": {
@@ -3276,14 +3276,14 @@
             {
               "listen": "test",
               "script": {
-                "id": "b7dd2734-751a-44f9-9019-b3e49ca7ccce",
+                "id": "62239ab5-4365-4c23-88ae-b7befbc1ba2f",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
                   "pm.test('Status 200/201', () => pm.expect(pm.response.code).to.be.oneOf([200, 201]));\r",
                   ""
                 ],
-                "_lastExecutionId": "f60cf099-da17-4894-8609-b57961f27f5f"
+                "_lastExecutionId": "6883fb79-d93a-49f8-a965-8beb94b43a46"
               }
             }
           ]
@@ -3294,7 +3294,7 @@
             "port": "3000",
             "path": [
               "produtos",
-              "5jGc5YTqEC7MWIYz"
+              "A7HjIxTL2t3GENu2"
             ],
             "host": [
               "localhost"
@@ -3310,7 +3310,7 @@
             },
             {
               "key": "Authorization",
-              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
               "system": true
             },
             {
@@ -3330,7 +3330,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "3c14b1c6-3a6e-4727-a29f-192cf73cf3d0",
+              "value": "6aa54bc1-c30f-40cc-9ff0-f25a3e98aa17",
               "system": true
             },
             {
@@ -3357,7 +3357,7 @@
           "method": "PUT",
           "body": {
             "mode": "raw",
-            "raw": "{\r\n  \"nome\": \"Teclado kabum 1773170046678 (editado)\",\r\n  \"preco\": 400,\r\n  \"descricao\": \"perifericos\",\r\n  \"quantidade\": 381\r\n}\r\n",
+            "raw": "{\r\n  \"nome\": \"Teclado kabum 1773170321686 (editado)\",\r\n  \"preco\": 400,\r\n  \"descricao\": \"perifericos\",\r\n  \"quantidade\": 381\r\n}\r\n",
             "options": {
               "raw": {
                 "language": "json"
@@ -3369,14 +3369,14 @@
             "bearer": [
               {
                 "type": "string",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
                 "key": "token"
               }
             ]
           }
         },
         "response": {
-          "id": "c22ec487-31d5-4485-b286-3086d85d0263",
+          "id": "2c7a7e63-26e7-4183-ae6d-10fa439b4659",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3418,7 +3418,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 10 Mar 2026 19:14:06 GMT"
+              "value": "Tue, 10 Mar 2026 19:18:41 GMT"
             },
             {
               "key": "Connection",
@@ -3485,10 +3485,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 6,
+          "responseTime": 7,
           "responseSize": 50
         },
-        "id": "202ef8e8-4c75-4109-afbb-4f3c773197f4",
+        "id": "2283464c-d2d5-47e1-aefb-f05688946abd",
         "assertions": [
           {
             "assertion": "Status 200/201",
@@ -3498,15 +3498,15 @@
       },
       {
         "cursor": {
-          "ref": "49d14e46-334b-46a0-97e7-345daadec28f",
+          "ref": "005de4f6-5d40-4549-a5b3-a1b157e26c73",
           "length": 7,
           "cycles": 1,
           "position": 6,
           "iteration": 0,
-          "httpRequestId": "947b0354-2075-45c2-8965-b9eb1ee75ec7"
+          "httpRequestId": "b3b168ed-d33f-408b-af10-28c089578c01"
         },
         "item": {
-          "id": "144bfb7f-c1e5-4911-9994-e97189b869a1",
+          "id": "027d39ad-9648-4d58-869a-0bbc5565e01a",
           "name": "Excluir produto",
           "request": {
             "url": {
@@ -3548,7 +3548,7 @@
             {
               "listen": "test",
               "script": {
-                "id": "82f53837-44f6-4015-ae32-dc583944680a",
+                "id": "f39e94ec-5ddd-464d-aae9-c82bf05a21fa",
                 "type": "text/javascript",
                 "packages": {},
                 "exec": [
@@ -3556,7 +3556,7 @@
                   "pm.test('Registro removido', () => pm.expect(pm.response.text()).to.include('Registro excluído com sucesso'));\r",
                   ""
                 ],
-                "_lastExecutionId": "7b5e8ebe-bd32-4444-ab9f-b14550e4fe8c"
+                "_lastExecutionId": "fd9487bf-d7ee-4f6a-99f8-80df87de9fc5"
               }
             }
           ]
@@ -3567,7 +3567,7 @@
             "port": "3000",
             "path": [
               "produtos",
-              "5jGc5YTqEC7MWIYz"
+              "A7HjIxTL2t3GENu2"
             ],
             "host": [
               "localhost"
@@ -3583,7 +3583,7 @@
             },
             {
               "key": "Authorization",
-              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
               "system": true
             },
             {
@@ -3603,7 +3603,7 @@
             },
             {
               "key": "Postman-Token",
-              "value": "8de67d21-0b1d-4ddc-a935-3a65a87d41f0",
+              "value": "f9727a27-e77f-4855-9d6d-9e9549c7767f",
               "system": true
             },
             {
@@ -3642,14 +3642,14 @@
             "bearer": [
               {
                 "type": "string",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMDQ2LCJleHAiOjE3NzMxNzA2NDZ9.LctkTUCmEamcSlcT4P1L1mtMBhV2XW3H1tTiUERd7W8",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImZ1bGFub0BxYS5jb20iLCJwYXNzd29yZCI6InRlc3RlIiwiaWF0IjoxNzczMTcwMzIxLCJleHAiOjE3NzMxNzA5MjF9.oB_2ONI9FtuHJhjNeoaM3lcDOy5vvuQ_oKXx7dMr0UA",
                 "key": "token"
               }
             ]
           }
         },
         "response": {
-          "id": "d4ce8e31-a73e-468e-9456-cfcdbbeaa3d3",
+          "id": "519dda74-8e34-4248-870f-37bfd5359d97",
           "status": "OK",
           "code": 200,
           "header": [
@@ -3691,7 +3691,7 @@
             },
             {
               "key": "Date",
-              "value": "Tue, 10 Mar 2026 19:14:06 GMT"
+              "value": "Tue, 10 Mar 2026 19:18:41 GMT"
             },
             {
               "key": "Connection",
@@ -3759,10 +3759,10 @@
             ]
           },
           "cookie": [],
-          "responseTime": 9,
+          "responseTime": 11,
           "responseSize": 51
         },
-        "id": "144bfb7f-c1e5-4911-9994-e97189b869a1",
+        "id": "027d39ad-9648-4d58-869a-0bbc5565e01a",
         "assertions": [
           {
             "assertion": "Status 200",
