@@ -88,17 +88,16 @@ jobs:
       - name: Download reports
         uses: actions/download-artifact@v4
         with:
-          name: reports
-          path: temp
+          name: api-test-reports
+          path: artifacts
 
       - name: Prepare folders
         run: |
           TIMESTAMP=${{ needs.test.outputs.timestamp }}
-
           mkdir -p site/$TIMESTAMP
-
-          SOURCE=$(find temp-reports -type d -name "$TIMESTAMP")
-
+          echo "Searching for report folder..."
+          SOURCE=$(find . -type d -name "$TIMESTAMP" | head -n 1)
+          echo "Found source: $SOURCE"
           cp -r $SOURCE/* site/$TIMESTAMP/
 
       - name: Keep last 30 executions
