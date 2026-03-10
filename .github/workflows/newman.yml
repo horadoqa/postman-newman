@@ -79,7 +79,7 @@ jobs:
             -r htmlextra,json \
             --reporter-htmlextra-export ../reports/$TIMESTAMP/index.html \
             --reporter-json-export ../reports/$TIMESTAMP/report.json \
-            --reporter-htmlextra-title "ServeRest - $TIMESTAMP" \
+            --reporter-htmlextra-title "ServeRest" \
             --reporter-htmlextra-darkTheme
           cd ..
 
