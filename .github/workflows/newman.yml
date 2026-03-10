@@ -61,7 +61,16 @@ jobs:
       # ---------------------------------------------------------------
       - name: Generate timestamp
         run: |
-          echo "DATE=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
+          # Pega o timestamp da pasta
+          DATE=$(basename "$d")
+
+          # Separa data e hora
+          RAW_DATE=$(echo $DATE | cut -d'_' -f1)      # 2026-03-10
+          RAW_TIME=$(echo $DATE | cut -d'_' -f2 | tr '-' ':')  # 15:31:06
+
+          # Converte para DD/MM/YYYY
+          DISPLAY_DATE=$(date -d "$RAW_DATE" +'%d/%m/%Y')
+          DISPLAY_TIME=$RAW_TIME
 
       # ---------------------------------------------------------------
       # 7️⃣ Executa testes Newman e salva relatórios
