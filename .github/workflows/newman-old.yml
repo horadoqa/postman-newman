@@ -1,0 +1,154 @@
+name: Newman CI Professional
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 12 * * *' # 09:00 BRT (UTC-3)
+
+jobs:
+
+  # ---------------------- TEST JOB ----------------------
+  test:
+    runs-on: ubuntu-latest
+    env:
+      TZ: America/Sao_Paulo
+    outputs:
+      status: ${{ steps.run-tests.outcome }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Newman + reporter
+        run: |
+          echo '{}' > package.json
+          npm install newman@^6 newman-reporter-htmlextra@^1
+
+      - name: Start ServeRest
+        run: npx -y serverest@latest &
+
+      - name: Wait for API
+        run: |
+          for i in {1..30}; do
+            if curl -fsS http://localhost:3000/usuarios >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+
+      - name: Prepare report folder
+        run: |
+          DATE=$(date +'%Y-%m-%d')
+          echo "DATE=$DATE" >> $GITHUB_ENV
+          mkdir -p reports/$DATE
+
+      - name: Run tests
+        id: run-tests
+        run: |
+          npx newman run postman/TesteApiServeRest.postman_collection.json \
+            -r htmlextra,json \
+            --reporter-htmlextra-export reports/$DATE/index.html \
+            --reporter-json-export reports/$DATE/report.json \
+            --reporter-htmlextra-title "ServeRest - $DATE" \
+            --reporter-htmlextra-darkTheme
+
+      - name: Upload reports artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-reports
+          path: reports
+
+  # ---------------------- DEPLOY JOB ----------------------
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Download reports
+        uses: actions/download-artifact@v4
+        with:
+          name: newman-reports
+          path: site
+
+      - name: Cleanup old reports (keep last 30 days)
+        run: |
+          cd site
+          ls -d */ | sort | head -n -30 | xargs rm -rf || true
+          cd ..
+
+      - name: Generate dashboard
+        run: |
+          cat << 'EOF' > site/index.html
+          <html>
+          <head>
+          <title>API Test Dashboard</title>
+          <style>
+          body{font-family:Arial;background:#0f172a;color:white;text-align:center;margin:0;padding:0}
+          h1{margin-top:40px}
+          .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:900px;margin:auto;padding:20px}
+          .card{background:#1e293b;padding:20px;border-radius:10px;transition:0.2s;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}
+          .card:hover{transform:translateY(-4px);background:#334155}
+          .pass{color:#22c55e}
+          .fail{color:#ef4444}
+          a{color:#38bdf8;text-decoration:none;font-weight:bold}
+          .footer{margin-top:40px;color:#94a3b8;font-size:14px;padding-bottom:40px}
+          </style>
+          </head>
+          <body>
+          <h1>🧪 API Test Dashboard</h1>
+          <div class="grid">
+          EOF
+
+                    for d in site/*/ ; do
+                      DATE=$(basename $d)
+                      TIME=$(TZ=America/Sao_Paulo date -r site/$DATE/index.html "+%d/%m/%Y %H:%M:%S")
+                      if [ -f site/$DATE/report.json ]; then
+                        FAIL_COUNT=$(jq '.run.failures | length' site/$DATE/report.json)
+                        TOTAL_COUNT=$(jq '.run.stats.assertions.total' site/$DATE/report.json)
+                        if [ "$FAIL_COUNT" -eq "0" ]; then
+                          STATUS="✔ $TOTAL_COUNT testes"
+                          COLOR="pass"
+                        else
+                          STATUS="❌ $FAIL_COUNT falhas / $TOTAL_COUNT testes"
+                          COLOR="fail"
+                        fi
+                      else
+                        STATUS="Relatório não encontrado"
+                        COLOR="fail"
+                      fi
+
+                      echo "<div class='card'>" >> site/index.html
+                      echo "<span>📅 $DATE</span>" >> site/index.html
+                      echo "<span>🕒 $TIME BRT</span>" >> site/index.html
+                      echo "<span class='$COLOR'>$STATUS</span>" >> site/index.html
+                      echo "<a href='$DATE/'>Abrir relatório</a>" >> site/index.html
+                      echo "</div>" >> site/index.html
+                    done
+
+                    cat << 'EOF' >> site/index.html
+          </div>
+          <div class="footer">
+          Pipeline executado via GitHub Actions
+          </div>
+          </body>
+          </html>
+          EOF
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
