@@ -137,16 +137,19 @@ jobs:
           # Muda para a pasta site/
           cd site
 
-          # Lista apenas pastas imediatas dentro de site/
           for d in $(ls -d */ 2>/dev/null | sort -r); do
-            [ -f "$d/report.json" ] || continue
+            # Remove a barra final
+            DIR="${d%/}"
+            
+            # Só continua se o report.json existir
+            [ -f "$DIR/report.json" ] || continue
 
-            DATE=$(basename "$d")
+            DATE="$DIR"
             DISPLAY_DATE=$(echo $DATE | cut -d'_' -f1)
             DISPLAY_TIME=$(echo $DATE | cut -d'_' -f2 | tr '-' ':')
 
-            FAIL=$(jq '.run.failures | length' "$d/report.json")
-            TOTAL=$(jq '.run.stats.assertions.total' "$d/report.json")
+            FAIL=$(jq '.run.failures | length' "$DIR/report.json")
+            TOTAL=$(jq '.run.stats.assertions.total' "$DIR/report.json")
 
             if [ "$FAIL" -eq "0" ]; then
               STATUS="<span class='pass'>✔ $TOTAL testes</span>"
