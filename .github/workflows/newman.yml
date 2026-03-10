@@ -97,7 +97,7 @@ jobs:
 
           mkdir -p site/$TIMESTAMP
 
-          cp -r temp/$TIMESTAMP/* site/$TIMESTAMP/
+          cp -r temp-reports/*/$TIMESTAMP/* site/$TIMESTAMP/ || cp -r temp-reports/$TIMESTAMP/* site/$TIMESTAMP/
 
       - name: Keep last 30 executions
         run: |
