@@ -158,7 +158,7 @@ jobs:
             echo "<a href='$DATE/'>Abrir relatório</a>" >> site/index.html
             echo "</div>" >> site/index.html
           done
-          cd..
+          cd ..
 
           cat << 'EOF' >> site/index.html
           </div>
