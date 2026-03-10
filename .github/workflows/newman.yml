@@ -134,6 +134,7 @@ jobs:
           <div class="grid">
           EOF
 
+          cd site
           for d in $(ls -d site/*/ 2>/dev/null | sort -r); do
             [ -f "$d/report.json" ] || continue
 
@@ -157,6 +158,7 @@ jobs:
             echo "<a href='$DATE/'>Abrir relatório</a>" >> site/index.html
             echo "</div>" >> site/index.html
           done
+          cd..
 
           cat << 'EOF' >> site/index.html
           </div>
