@@ -137,8 +137,9 @@ jobs:
           # Muda para a pasta site/
           cd site
 
-          # Loop pelas pastas de execução
+          # Loop correto: lista apenas pastas dentro de site/
           for d in $(ls -d */ 2>/dev/null | sort -r); do
+            # ignora pastas sem report.json
             [ -f "$d/report.json" ] || continue
 
             DATE=$(basename "$d")
@@ -162,7 +163,6 @@ jobs:
             echo "</div>" >> index.html
           done
 
-          # Volta para o diretório raiz
           cd ..
 
           cat << 'EOF' >> site/index.html
