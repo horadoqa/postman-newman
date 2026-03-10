@@ -92,36 +92,34 @@ jobs:
           git reset --hard origin/gh-pages || true
 
       # ---------------------------------------------------------------
-      # 9️⃣ Copia os relatórios recentes para a pasta do site
+      # 9️⃣ Copia os relatórios recentes para a raiz da branch gh-pages
       # ---------------------------------------------------------------
       - name: Copy test reports
         run: |
           TIMESTAMP=${{ steps.set-timestamp.outputs.DATE }}
-          mkdir -p site/$TIMESTAMP
-          cp -r $GITHUB_WORKSPACE/reports/$TIMESTAMP/* site/$TIMESTAMP/
+          mkdir -p $TIMESTAMP
+          cp -r $GITHUB_WORKSPACE/reports/$TIMESTAMP/* $TIMESTAMP/
 
       # ---------------------------------------------------------------
       # 🔟 Mantém apenas os últimos 30 relatórios
       # ---------------------------------------------------------------
       - name: Keep last 30 executions
         run: |
-          cd site
           REPORTS=(*/)
           NUM_REPORTS=${#REPORTS[@]}
           if [ $NUM_REPORTS -gt 30 ]; then
             REMOVE=${REPORTS[@]:30}
             echo "${REMOVE[@]}" | xargs rm -rf
           fi
-          cd ..
 
       # ---------------------------------------------------------------
       # 1️⃣1️⃣ Gera o dashboard HTML
       # ---------------------------------------------------------------
       - name: Generate dashboard
         run: |
-          rm -f site/index.html
+          rm -f index.html
 
-          cat << 'EOF' > site/index.html
+          cat << 'EOF' > index.html
           <html>
           <head>
           <title>API Test Dashboard</title>
@@ -141,7 +139,6 @@ jobs:
           <div class="grid">
           EOF
 
-          cd site
           for d in */; do
             DIR="${d%/}"
             [ -f "$DIR/report.json" ] || continue
@@ -166,9 +163,8 @@ jobs:
             echo "<a href='$DATE/'>Abrir relatório</a>" >> index.html
             echo "</div>" >> index.html
           done
-          cd ..
 
-          cat << 'EOF' >> site/index.html
+          cat << 'EOF' >> index.html
           </div>
           </body>
           </html>
@@ -179,7 +175,6 @@ jobs:
       # ---------------------------------------------------------------
       - name: Commit reports
         run: |
-          cd site
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .
