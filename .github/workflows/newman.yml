@@ -170,6 +170,7 @@ jobs:
           done
 
           cat << 'EOF' >> index.html
+          <p>Pipeline executado via Github Actions.</p>
           </div>
           </body>
           </html>
