@@ -5,12 +5,13 @@ Projeto aplicando testes automatizados de API, integração contínua e geraçã
 ---
 
 ## 🚀 Tecnologias utilizadas
-- **[Postman](https://www.postman.com/)** → Criação e organização das collections de testes.  
-- **[Newman](https://www.npmjs.com/package/newman)** → Execução automatizada das collections.  
-- **[newman-reporter-htmlextra](https://www.npmjs.com/package/newman-reporter-htmlextra)** → Relatórios HTML detalhados com gráficos de execução.  
-- **[ServeRest](https://serverest.dev/)** → API fake simulando backend de e-commerce.  
-- **[GitHub Actions](https://docs.github.com/pt/actions)** → Pipeline CI/CD configurado para executar testes automaticamente.  
-- **[GitHub Pages](https://pages.github.com/)** → Publicação do dashboard de relatórios diário acessível via web.  
+
+* **[Postman](https://www.postman.com/)** → Criação e organização das collections de testes.
+* **[Newman](https://www.npmjs.com/package/newman)** → Execução automatizada das collections.
+* **[newman-reporter-htmlextra](https://www.npmjs.com/package/newman-reporter-htmlextra)** → Relatórios HTML detalhados com gráficos de execução.
+* **[ServeRest](https://serverest.dev/)** → API fake simulando backend de e-commerce.
+* **[GitHub Actions](https://docs.github.com/pt/actions)** → Pipeline CI/CD configurado para executar testes automaticamente.
+* **[GitHub Pages](https://pages.github.com/)** → Publicação do dashboard de relatórios diário acessível via web.
 
 ---
 
@@ -21,10 +22,10 @@ Teste-Api-ServeRest
 ┣ 📂 .github/workflows       # Pipeline CI/CD (Newman + Deploy)
 ┣ 📂 postman                 # Collection de testes (.json)
 ┣ 📂 reports                 # Relatórios HTML e JSON (gerados no CI)
-┣ 📂 site                    # Dashboard público no GitHub Pages
+┣ 📂 site                    # Pastas de relatórios dentro da branch gh-pages
 ┣ 📜 .gitignore              # Ignora arquivos desnecessários
 ┣ 📜 README.md               # Documentação do projeto
-````
+```
 
 ---
 
@@ -53,6 +54,8 @@ Teste-Api-ServeRest
 Acesse o histórico de execuções diárias:
 **[Dashboard Newman](https://horadoqa.github.io/postman-newman/)**
 
+---
+
 ## O relatório com os testes executados
 
 <p align="center">
@@ -68,6 +71,7 @@ Acesse o histórico de execuções diárias:
   * Criar usuário
   * Login com token JWT
   * Listar usuários
+
 * **Produtos**
 
   * Cadastrar produto
@@ -112,36 +116,40 @@ newman run ./postman/TesteApiServeRest.postman_collection.json \
 
 * Automação completa sem intervenção manual
 * Dashboard moderno, responsivo e acessível online via GitHub Pages
-* Histórico diário com até 30 dias de execuções
+* Histórico diário com até 30 execuções
 * Status PASS/FAIL automático, com número de testes e falhas
 * Pipeline CI/CD executando automaticamente a cada push ou schedule
 * Relatórios detalhados em HTML + métricas em JSON
 
 ---
 
-💡 Esse projeto demonstra como transformar testes de API em **um dashboard profissional**, pronto para portfólio de QA/SDET.
+## 🌐 Configuração do GitHub Pages
 
----
+O dashboard é publicado automaticamente via **GitHub Actions** na branch `gh-pages`.
 
-Perfeito! Podemos adicionar uma seção **Contribuições** clara e profissional no seu README, mostrando como outras pessoas podem colaborar com o projeto.
+Configuração recomendada:
 
-Aqui está uma sugestão atualizada do README com a seção incluída:
+* **Source:** branch `gh-pages`
+* **Folder:** `/ (root)` → o `index.html` do dashboard deve estar na raiz da branch
+* Relatórios HTML e JSON são mantidos dentro da pasta `site/<timestamp>/`
+* O dashboard na raiz aponta para os relatórios via links relativos (`site/<timestamp>/index.html`)
 
 ---
 
 ## 🤝 Contribuições
 
-Contribuições são sempre bem-vindas! 🙌  
+Contribuições são sempre bem-vindas! 🙌
 
 Se você quiser ajudar, siga estas instruções:
 
 1. **Fork** o repositório:
+
 ```bash
 git clone https://github.com/horadoqa/postman-newman.git
 cd postman-newman
-````
+```
 
-2. **Crie uma branch** para a sua feature ou correção de bug:
+2. **Crie uma branch** para sua feature ou correção de bug:
 
 ```bash
 git checkout -b minha-feature
@@ -157,7 +165,7 @@ newman run ./postman/TesteApiServeRest.postman_collection.json \
   --reporter-htmlextra-export ./reports/index.html
 ```
 
-5. **Commit e push** para a sua branch:
+5. **Commit e push** para sua branch:
 
 ```bash
 git add .
@@ -165,10 +173,10 @@ git commit -m "Descrição das alterações"
 git push origin minha-feature
 ```
 
-6. **Abra um Pull Request** neste repositório.
+6. **Abra um Pull Request** neste repositório:
 
-   * Descreva claramente suas alterações.
-   * Se possível, explique o impacto nos testes e no dashboard.
+* Descreva claramente suas alterações
+* Explique o impacto nos testes e no dashboard
 
 ---
 
@@ -181,5 +189,7 @@ git push origin minha-feature
 
 ---
 
-Agradecemos a sua colaboração! Cada contribuição ajuda a manter o projeto **mais robusto e profissional**. 🚀
+Agradecemos a sua colaboração! Cada contribuição ajuda a manter o projeto **robusto e profissional**. 🚀
+
+---
 
