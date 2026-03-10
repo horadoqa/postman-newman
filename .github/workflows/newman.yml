@@ -91,13 +91,15 @@ jobs:
           name: reports
           path: temp
 
-      - name: Copy reports
+      - name: Prepare folders
         run: |
           TIMESTAMP=${{ needs.test.outputs.timestamp }}
 
           mkdir -p site/$TIMESTAMP
 
-          cp -r temp-reports/*/$TIMESTAMP/* site/$TIMESTAMP/ || cp -r temp-reports/$TIMESTAMP/* site/$TIMESTAMP/
+          SOURCE=$(find temp-reports -type d -name "$TIMESTAMP")
+
+          cp -r $SOURCE/* site/$TIMESTAMP/
 
       - name: Keep last 30 executions
         run: |
