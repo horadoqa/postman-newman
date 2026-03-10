@@ -7,12 +7,14 @@ on:
   schedule:
     - cron: '0 12 * * *' # 09:00 BRT
 
-jobs:
-  test-and-deploy:
-    runs-on: ubuntu-latest
-    env:
-      TZ: America/Sao_Paulo
+env:
+  TZ: America/Sao_Paulo
 
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    outputs:
+      timestamp: ${{ steps.set-timestamp.outputs.DATE }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -41,48 +43,57 @@ jobs:
           exit 1
 
       - name: Generate timestamp
+        id: set-timestamp
         run: |
           DATE=$(date +'%Y-%m-%d_%H-%M-%S')
           echo "DATE=$DATE" >> $GITHUB_ENV
+          echo "::set-output name=DATE::$DATE"
 
-      # ---------------------------
-      # Checkout gh-pages branch
-      # ---------------------------
-      - name: Checkout gh-pages
+      - name: Run Newman tests
+        run: |
+          mkdir -p reports/${{ steps.set-timestamp.outputs.DATE }}
+          npx newman run postman/TesteApiServeRest.postman_collection.json \
+            -r htmlextra,json \
+            --reporter-htmlextra-export reports/${{ steps.set-timestamp.outputs.DATE }}/index.html \
+            --reporter-json-export reports/${{ steps.set-timestamp.outputs.DATE }}/report.json \
+            --reporter-htmlextra-title "ServeRest - ${{ steps.set-timestamp.outputs.DATE }}" \
+            --reporter-htmlextra-darkTheme
+
+      - name: Upload reports artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-reports
+          path: reports
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout gh-pages branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: site
         continue-on-error: true
 
+      - name: Download test reports
+        uses: actions/download-artifact@v4
+        with:
+          name: api-test-reports
+          path: temp-reports
+
       - name: Prepare folders
         run: |
-          mkdir -p site/$DATE
+          TIMESTAMP=${{ needs.test.outputs.timestamp }}
+          mkdir -p site/$TIMESTAMP
+          cp -r temp-reports/$TIMESTAMP/* site/$TIMESTAMP/
 
-      # ---------------------------
-      # Run Newman tests
-      # ---------------------------
-      - name: Run tests
-        run: |
-          npx newman run postman/TesteApiServeRest.postman_collection.json \
-            -r htmlextra,json \
-            --reporter-htmlextra-export site/$DATE/index.html \
-            --reporter-json-export site/$DATE/report.json \
-            --reporter-htmlextra-title "ServeRest - $DATE" \
-            --reporter-htmlextra-darkTheme
-
-      # ---------------------------
-      # Keep only last 30 reports
-      # ---------------------------
       - name: Keep last 30 executions
         run: |
           cd site
           ls -d */ 2>/dev/null | sort -r | tail -n +31 | xargs rm -rf || true
           cd ..
 
-      # ---------------------------
-      # Generate dashboard
-      # ---------------------------
       - name: Generate dashboard
         run: |
           cat << 'EOF' > site/index.html
@@ -133,17 +144,11 @@ jobs:
           </html>
           EOF
 
-      # ---------------------------
-      # Commit and push to gh-pages
-      # ---------------------------
       - name: Commit reports
         run: |
           cd site
-          git init
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git add .
           git commit -m "update test reports" || echo "nothing to commit"
-          git branch -M gh-pages
-          git remote add origin https://github.com/${{ github.repository }}
-          git push -f origin gh-pages
+          git push origin gh-pages -f
