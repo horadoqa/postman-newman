@@ -144,7 +144,7 @@ jobs:
           <div class="grid">
           EOF
 
-          for d in */; do
+          for d in $(ls -d */ | sort -r); do
             DIR="${d%/}"
             [ -f "$DIR/report.json" ] || continue
 
