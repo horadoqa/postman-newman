@@ -16,13 +16,13 @@ jobs:
 
     steps:
       # ---------------------------------------------------------------
-      # Passo 1: Pega o código do repositório
+      # 1️⃣ Checkout do repositório principal
       # ---------------------------------------------------------------
       - name: Checkout repository
         uses: actions/checkout@v4
 
       # ---------------------------------------------------------------
-      # Passo 2: Instala Node.js
+      # 2️⃣ Configura Node.js
       # ---------------------------------------------------------------
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -30,7 +30,7 @@ jobs:
           node-version: 20
 
       # ---------------------------------------------------------------
-      # Passo 3: Instala Newman e reporter extra
+      # 3️⃣ Instala Newman e reporter extra
       # ---------------------------------------------------------------
       - name: Install Newman
         run: |
@@ -38,13 +38,13 @@ jobs:
           npm install newman@^6 newman-reporter-htmlextra@^1
 
       # ---------------------------------------------------------------
-      # Passo 4: Inicia a API ServeRest
+      # 4️⃣ Inicia API ServeRest
       # ---------------------------------------------------------------
       - name: Start ServeRest
         run: npx -y serverest@latest &
 
       # ---------------------------------------------------------------
-      # Passo 5: Espera a API ficar disponível
+      # 5️⃣ Espera a API ficar disponível
       # ---------------------------------------------------------------
       - name: Wait for API
         run: |
@@ -57,7 +57,7 @@ jobs:
           exit 1
 
       # ---------------------------------------------------------------
-      # Passo 6: Cria timestamp da execução
+      # 6️⃣ Cria timestamp da execução
       # ---------------------------------------------------------------
       - name: Generate timestamp
         id: set-timestamp
@@ -67,7 +67,7 @@ jobs:
           echo "::set-output name=DATE::$DATE"
 
       # ---------------------------------------------------------------
-      # Passo 7: Executa os testes Newman
+      # 7️⃣ Executa testes Newman e salva relatórios
       # ---------------------------------------------------------------
       - name: Run Newman tests
         run: |
@@ -80,26 +80,26 @@ jobs:
             --reporter-htmlextra-darkTheme
 
       # ---------------------------------------------------------------
-      # Passo 8: Pega a branch gh-pages para atualizar os relatórios
+      # 8️⃣ Checkout da branch gh-pages
       # ---------------------------------------------------------------
       - name: Checkout gh-pages branch
-        uses: actions/checkout@v4
-        with:
-          ref: gh-pages
-          path: site
-        continue-on-error: true
+        run: |
+          # Se a branch gh-pages não existir, cria ela como orphan
+          git fetch origin gh-pages || git checkout --orphan gh-pages
+          git checkout gh-pages
+          git reset --hard origin/gh-pages || true
 
       # ---------------------------------------------------------------
-      # Passo 9: Copia os relatórios do Newman para a branch gh-pages
+      # 9️⃣ Copia os relatórios recentes para a pasta do site
       # ---------------------------------------------------------------
       - name: Copy test reports
         run: |
           TIMESTAMP=${{ steps.set-timestamp.outputs.DATE }}
           mkdir -p site/$TIMESTAMP
-          cp -r reports/$TIMESTAMP/* site/$TIMESTAMP/
+          cp -r $GITHUB_WORKSPACE/reports/$TIMESTAMP/* site/$TIMESTAMP/
 
       # ---------------------------------------------------------------
-      # Passo 10: Mantém apenas os últimos 30 relatórios
+      # 🔟 Mantém apenas os últimos 30 relatórios
       # ---------------------------------------------------------------
       - name: Keep last 30 executions
         run: |
@@ -108,7 +108,7 @@ jobs:
           cd ..
 
       # ---------------------------------------------------------------
-      # Passo 11: Gera o dashboard HTML
+      # 1️⃣1️⃣ Gera o dashboard HTML
       # ---------------------------------------------------------------
       - name: Generate dashboard
         run: |
@@ -134,7 +134,6 @@ jobs:
           <div class="grid">
           EOF
 
-          # Loop pelas pastas de execução ordenadas da mais recente para a mais antiga
           for d in $(ls -d site/*/ 2>/dev/null | sort -r); do
             [ -f "$d/report.json" ] || continue
 
@@ -166,7 +165,7 @@ jobs:
           EOF
 
       # ---------------------------------------------------------------
-      # Passo 12: Comita e envia para gh-pages
+      # 1️⃣2️⃣ Comita e envia os relatórios e dashboard para gh-pages
       # ---------------------------------------------------------------
       - name: Commit reports
         run: |
@@ -175,4 +174,4 @@ jobs:
           git config user.email "actions@github.com"
           git add .
           git commit -m "update test reports" || echo "nothing to commit"
-          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages -f
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
