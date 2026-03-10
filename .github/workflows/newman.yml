@@ -11,13 +11,8 @@ env:
   TZ: America/Sao_Paulo
 
 jobs:
-  # ===============================================================
-  # JOB 1 - TEST
-  # ===============================================================
-  test:
+  newman-ci:
     runs-on: ubuntu-latest
-    outputs:
-      timestamp: ${{ steps.set-timestamp.outputs.DATE }} # output para passar para deploy
 
     steps:
       # ---------------------------------------------------------------
@@ -84,16 +79,8 @@ jobs:
             --reporter-htmlextra-title "ServeRest - ${{ steps.set-timestamp.outputs.DATE }}" \
             --reporter-htmlextra-darkTheme
 
-  # ===============================================================
-  # JOB 2 - DEPLOY
-  # ===============================================================
-  deploy:
-    needs: test # espera job 'test' terminar
-    runs-on: ubuntu-latest
-
-    steps:
       # ---------------------------------------------------------------
-      # Passo 1: Pega o código da branch gh-pages
+      # Passo 8: Pega a branch gh-pages para atualizar os relatórios
       # ---------------------------------------------------------------
       - name: Checkout gh-pages branch
         uses: actions/checkout@v4
@@ -103,16 +90,16 @@ jobs:
         continue-on-error: true
 
       # ---------------------------------------------------------------
-      # Passo 2: Copia os relatórios gerados pelo job 'test'
+      # Passo 9: Copia os relatórios do Newman para a branch gh-pages
       # ---------------------------------------------------------------
       - name: Copy test reports
         run: |
-          TIMESTAMP=${{ needs.test.outputs.timestamp }}
+          TIMESTAMP=${{ steps.set-timestamp.outputs.DATE }}
           mkdir -p site/$TIMESTAMP
-          cp -r $GITHUB_WORKSPACE/reports/$TIMESTAMP/* site/$TIMESTAMP/
+          cp -r reports/$TIMESTAMP/* site/$TIMESTAMP/
 
       # ---------------------------------------------------------------
-      # Passo 3: Mantém apenas os últimos 30 relatórios
+      # Passo 10: Mantém apenas os últimos 30 relatórios
       # ---------------------------------------------------------------
       - name: Keep last 30 executions
         run: |
@@ -121,7 +108,7 @@ jobs:
           cd ..
 
       # ---------------------------------------------------------------
-      # Passo 4: Gera o dashboard HTML
+      # Passo 11: Gera o dashboard HTML
       # ---------------------------------------------------------------
       - name: Generate dashboard
         run: |
@@ -147,7 +134,7 @@ jobs:
           <div class="grid">
           EOF
 
-          # loop pelas pastas de execução
+          # Loop pelas pastas de execução ordenadas da mais recente para a mais antiga
           for d in $(ls -d site/*/ 2>/dev/null | sort -r); do
             [ -f "$d/report.json" ] || continue
 
@@ -179,7 +166,7 @@ jobs:
           EOF
 
       # ---------------------------------------------------------------
-      # Passo 5: Comita e envia os relatórios e dashboard para gh-pages
+      # Passo 12: Comita e envia para gh-pages
       # ---------------------------------------------------------------
       - name: Commit reports
         run: |
