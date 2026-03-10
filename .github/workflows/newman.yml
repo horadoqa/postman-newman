@@ -30,12 +30,14 @@ jobs:
           node-version: 20
 
       # ---------------------------------------------------------------
-      # 3️⃣ Instala Newman e reporter extra
+      # 3️⃣ Instala Newman em pasta temporária
       # ---------------------------------------------------------------
-      - name: Install Newman
+      - name: Install Newman in temp folder
         run: |
+          mkdir -p tmp && cd tmp
           echo '{}' > package.json
           npm install newman@^6 newman-reporter-htmlextra@^1
+          cd ..
 
       # ---------------------------------------------------------------
       # 4️⃣ Inicia API ServeRest
@@ -70,13 +72,16 @@ jobs:
       # ---------------------------------------------------------------
       - name: Run Newman tests
         run: |
-          mkdir -p reports/${{ steps.set-timestamp.outputs.DATE }}
-          npx newman run postman/TesteApiServeRest.postman_collection.json \
+          TIMESTAMP=${{ steps.set-timestamp.outputs.DATE }}
+          mkdir -p reports/$TIMESTAMP
+          cd tmp
+          npx newman run ../postman/TesteApiServeRest.postman_collection.json \
             -r htmlextra,json \
-            --reporter-htmlextra-export reports/${{ steps.set-timestamp.outputs.DATE }}/index.html \
-            --reporter-json-export reports/${{ steps.set-timestamp.outputs.DATE }}/report.json \
-            --reporter-htmlextra-title "ServeRest - ${{ steps.set-timestamp.outputs.DATE }}" \
+            --reporter-htmlextra-export ../reports/$TIMESTAMP/index.html \
+            --reporter-json-export ../reports/$TIMESTAMP/report.json \
+            --reporter-htmlextra-title "ServeRest - $TIMESTAMP" \
             --reporter-htmlextra-darkTheme
+          cd ..
 
       # ---------------------------------------------------------------
       # 8️⃣ Checkout da branch gh-pages
@@ -92,9 +97,9 @@ jobs:
           git reset --hard origin/gh-pages || true
 
       # ---------------------------------------------------------------
-      # 9️⃣ Copia os relatórios recentes para a raiz da branch gh-pages
+      # 9️⃣ Copia os relatórios para a raiz da branch gh-pages
       # ---------------------------------------------------------------
-      - name: Copy test reports
+      - name: Copy test reports to gh-pages root
         run: |
           TIMESTAMP=${{ steps.set-timestamp.outputs.DATE }}
           mkdir -p $TIMESTAMP
@@ -171,7 +176,14 @@ jobs:
           EOF
 
       # ---------------------------------------------------------------
-      # 1️⃣2️⃣ Comita e envia os relatórios e dashboard para gh-pages
+      # 1️⃣2️⃣ Limpa arquivos Node antes de commitar
+      # ---------------------------------------------------------------
+      - name: Clean node_modules and package files
+        run: |
+          rm -rf tmp node_modules package.json package-lock.json
+
+      # ---------------------------------------------------------------
+      # 1️⃣3️⃣ Comita e envia os relatórios e dashboard para gh-pages
       # ---------------------------------------------------------------
       - name: Commit reports
         run: |
