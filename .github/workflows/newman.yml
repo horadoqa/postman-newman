@@ -134,8 +134,11 @@ jobs:
           <div class="grid">
           EOF
 
+          # Muda para a pasta site/
           cd site
-          for d in $(ls -d site/*/ 2>/dev/null | sort -r); do
+
+          # Loop pelas pastas de execução
+          for d in $(ls -d */ 2>/dev/null | sort -r); do
             [ -f "$d/report.json" ] || continue
 
             DATE=$(basename "$d")
@@ -151,13 +154,15 @@ jobs:
               STATUS="<span class='fail'>❌ $FAIL falhas / $TOTAL</span>"
             fi
 
-            echo "<div class='card'>" >> site/index.html
-            echo "<p>📅 $DISPLAY_DATE</p>" >> site/index.html
-            echo "<p>🕒 $DISPLAY_TIME</p>" >> site/index.html
-            echo "<p>$STATUS</p>" >> site/index.html
-            echo "<a href='$DATE/'>Abrir relatório</a>" >> site/index.html
-            echo "</div>" >> site/index.html
+            echo "<div class='card'>" >> index.html
+            echo "<p>📅 $DISPLAY_DATE</p>" >> index.html
+            echo "<p>🕒 $DISPLAY_TIME</p>" >> index.html
+            echo "<p>$STATUS</p>" >> index.html
+            echo "<a href='$DATE/'>Abrir relatório</a>" >> index.html
+            echo "</div>" >> index.html
           done
+
+          # Volta para o diretório raiz
           cd ..
 
           cat << 'EOF' >> site/index.html
