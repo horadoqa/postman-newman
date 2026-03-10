@@ -137,9 +137,8 @@ jobs:
           # Muda para a pasta site/
           cd site
 
-          # Loop correto: lista apenas pastas dentro de site/
+          # Lista apenas pastas imediatas dentro de site/
           for d in $(ls -d */ 2>/dev/null | sort -r); do
-            # ignora pastas sem report.json
             [ -f "$d/report.json" ] || continue
 
             DATE=$(basename "$d")
