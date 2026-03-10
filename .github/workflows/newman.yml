@@ -172,7 +172,7 @@ jobs:
           LABELS=""
           DATA=""
 
-          for d in $(ls -d site/*/ 2>/dev/null | sort -r); do
+          find site -mindepth 1 -maxdepth 1 -type d | sort -r | while read d; do
 
             [ -f "$d/report.json" ] || continue
 
