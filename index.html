@@ -1,118 +1,68 @@
 <html>
 <head>
-
 <title>API Test Dashboard</title>
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <style>
-
-body{
-font-family:Arial;
-background:#0f172a;
-color:white;
-text-align:center
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-max-width:1000px;
-margin:auto
-}
-
-.card{
-background:#1e293b;
-padding:20px;
-border-radius:10px
-}
-
-.pass{color:#22c55e}
-.fail{color:#ef4444}
-
-a{color:#38bdf8;text-decoration:none}
-
-canvas{
-max-width:800px;
-margin:auto
-}
-
+  body{font-family:Arial;background:#0f172a;color:white;text-align:center;margin:0;padding:0}
+  h1{margin-top:40px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1000px;margin:auto;padding:20px}
+  .card{background:#1e293b;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.4)}
+  .pass{color:#22c55e;font-weight:bold}
+  .fail{color:#ef4444;font-weight:bold}
+  a{color:#38bdf8;text-decoration:none;font-weight:bold}
+  a:hover{color:#0ea5e9}
 </style>
-
 </head>
-
 <body>
-
 <h1>🧪 API Test Dashboard</h1>
-
-<canvas id="chart"></canvas>
-
-<h2>Test Executions</h2>
-
 <div class="grid">
 <div class='card'>
-<p>2026-03-10</p>
-<p>15:05:05</p>
+<p>📅 2026-03-10</p>
+<p>🕒 15:31:06</p>
+<p><span class='pass'>✔ 7 testes</span></p>
+<a href='2026-03-10_15-31-06/'>Abrir relatório</a>
+</div>
+<div class='card'>
+<p>📅 2026-03-10</p>
+<p>🕒 15:05:05</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_15-05-05/'>Abrir relatório</a>
 </div>
 <div class='card'>
-<p>2026-03-10</p>
-<p>14:59:51</p>
+<p>📅 2026-03-10</p>
+<p>🕒 14:59:51</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_14-59-51/'>Abrir relatório</a>
 </div>
 <div class='card'>
-<p>2026-03-10</p>
-<p>14:50:45</p>
+<p>📅 2026-03-10</p>
+<p>🕒 14:50:45</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_14-50-45/'>Abrir relatório</a>
 </div>
 <div class='card'>
-<p>2026-03-10</p>
-<p>14:46:51</p>
+<p>📅 2026-03-10</p>
+<p>🕒 14:46:51</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_14-46-51/'>Abrir relatório</a>
 </div>
 <div class='card'>
-<p>2026-03-10</p>
-<p>14:43:37</p>
+<p>📅 2026-03-10</p>
+<p>🕒 14:43:37</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_14-43-37/'>Abrir relatório</a>
 </div>
 <div class='card'>
-<p>2026-03-10</p>
-<p>14:26:47</p>
+<p>📅 2026-03-10</p>
+<p>🕒 14:26:47</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_14-26-47/'>Abrir relatório</a>
 </div>
 <div class='card'>
-<p>2026-03-10</p>
-<p>14:09:18</p>
+<p>📅 2026-03-10</p>
+<p>🕒 14:09:18</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_14-09-18/'>Abrir relatório</a>
 </div>
 </div>
-
-<script>
-
-const ctx = document.getElementById('chart');
-
-new Chart(ctx, {
-type: 'line',
-data: {
-labels: [],
-datasets: [{
-label: 'Test Success',
-data: [],
-borderColor: '#22c55e',
-tension:0.3
-}]
-}
-});
-
-</script>
-
 </body>
 </html>
