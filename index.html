@@ -53,6 +53,12 @@ margin:auto
 <div class="grid">
 <div class='card'>
 <p>2026-03-10</p>
+<p>15:05:05</p>
+<p><span class='pass'>✔ 7 testes</span></p>
+<a href='2026-03-10_15-05-05/'>Abrir relatório</a>
+</div>
+<div class='card'>
+<p>2026-03-10</p>
 <p>14:59:51</p>
 <p><span class='pass'>✔ 7 testes</span></p>
 <a href='2026-03-10_14-59-51/'>Abrir relatório</a>
@@ -96,10 +102,10 @@ const ctx = document.getElementById('chart');
 new Chart(ctx, {
 type: 'line',
 data: {
-labels: [ '14:59:51', '14:50:45', '14:46:51', '14:43:37', '14:26:47', '14:09:18',],
+labels: [],
 datasets: [{
 label: 'Test Success',
-data: [ 1, 1, 1, 1, 1, 1,],
+data: [],
 borderColor: '#22c55e',
 tension:0.3
 }]
