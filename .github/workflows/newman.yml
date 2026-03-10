@@ -60,11 +60,8 @@ jobs:
       # 6️⃣ Cria timestamp da execução
       # ---------------------------------------------------------------
       - name: Generate timestamp
-        id: set-timestamp
         run: |
-          DATE=$(date +'%Y-%m-%d_%H-%M-%S')
-          echo "DATE=$DATE" >> $GITHUB_ENV
-          echo "::set-output name=DATE::$DATE"
+          echo "DATE=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
 
       # ---------------------------------------------------------------
       # 7️⃣ Executa testes Newman e salva relatórios
