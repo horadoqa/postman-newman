@@ -2,10 +2,10 @@ name: Newman CI Professional
 
 on:
   push:
-    branches: [ main, master ] # dispara em push nas branches principais
-  workflow_dispatch: # permite disparo manual
+    branches: [ main, master ] 
+  workflow_dispatch: 
   schedule:
-    - cron: '0 12 * * *' # executa todo dia às 12:00 UTC (09:00 BRT)
+    - cron: '0 12 * * *' 
 
 env:
   TZ: America/Sao_Paulo
@@ -60,17 +60,10 @@ jobs:
       # 6️⃣ Cria timestamp da execução
       # ---------------------------------------------------------------
       - name: Generate timestamp
+        id: set-timestamp
         run: |
-          # Pega o timestamp da pasta
-          DATE=$(basename "$d")
-
-          # Separa data e hora
-          RAW_DATE=$(echo $DATE | cut -d'_' -f1)      # 2026-03-10
-          RAW_TIME=$(echo $DATE | cut -d'_' -f2 | tr '-' ':')  # 15:31:06
-
-          # Converte para DD/MM/YYYY
-          DISPLAY_DATE=$(date -d "$RAW_DATE" +'%d/%m/%Y')
-          DISPLAY_TIME=$RAW_TIME
+          DATE=$(date '+%Y-%m-%d_%H-%M-%S')
+          echo "DATE=$DATE" >> $GITHUB_OUTPUT
 
       # ---------------------------------------------------------------
       # 7️⃣ Executa testes Newman e salva relatórios
@@ -90,9 +83,12 @@ jobs:
       # ---------------------------------------------------------------
       - name: Checkout gh-pages branch
         run: |
-          # Se a branch gh-pages não existir, cria ela como orphan
-          git fetch origin gh-pages || git checkout --orphan gh-pages
-          git checkout gh-pages
+          git fetch origin gh-pages || true
+          if git rev-parse --verify origin/gh-pages >/dev/null 2>&1; then
+            git checkout gh-pages
+          else
+            git checkout --orphan gh-pages
+          fi
           git reset --hard origin/gh-pages || true
 
       # ---------------------------------------------------------------
@@ -110,7 +106,12 @@ jobs:
       - name: Keep last 30 executions
         run: |
           cd site
-          ls -d */ 2>/dev/null | sort -r | tail -n +31 | xargs rm -rf || true
+          REPORTS=(*/)
+          NUM_REPORTS=${#REPORTS[@]}
+          if [ $NUM_REPORTS -gt 30 ]; then
+            REMOVE=${REPORTS[@]:30}
+            echo "${REMOVE[@]}" | xargs rm -rf
+          fi
           cd ..
 
       # ---------------------------------------------------------------
@@ -140,14 +141,9 @@ jobs:
           <div class="grid">
           EOF
 
-          # Muda para a pasta site/
           cd site
-
-          for d in $(ls -d */ 2>/dev/null | sort -r); do
-            # Remove a barra final
+          for d in */; do
             DIR="${d%/}"
-            
-            # Só continua se o report.json existir
             [ -f "$DIR/report.json" ] || continue
 
             DATE="$DIR"
@@ -170,7 +166,6 @@ jobs:
             echo "<a href='$DATE/'>Abrir relatório</a>" >> index.html
             echo "</div>" >> index.html
           done
-
           cd ..
 
           cat << 'EOF' >> site/index.html
@@ -190,6 +185,3 @@ jobs:
           git add .
           git commit -m "update test reports" || echo "nothing to commit"
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
-
-
-          
