@@ -65,11 +65,16 @@ jobs:
             --reporter-htmlextra-title "ServeRest - ${{ steps.timestamp.outputs.date }}" \
             --reporter-htmlextra-darkTheme
 
-      - name: Upload artifact
+      - name: Debug reports
+        run: |
+          echo "Listing reports folder"
+          ls -R reports
+    
+      - name: Upload reports artifact
         uses: actions/upload-artifact@v4
         with:
-          name: reports
-          path: reports
+          name: api-test-reports
+          path: reports/**
 
   deploy:
 
