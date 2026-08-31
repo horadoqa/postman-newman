@@ -1,0 +1,1044 @@
+{
+  "info": {
+    "_postman_id": "4b0c0af6-18d0-404d-97bc-107a870a6776",
+    "name": "serverest - cicd",
+    "description": "**O ServeRest é uma API REST gratuita que simula uma loja virtual com intuito de servir de material de estudos de testes de API.**",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38870702"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "CT-API-001 - Cadastrar Usuário (CREATE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Successful POST request\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r\n});\r\n\r\nif (pm.response.code === 201 || pm.response.code === 200) {\r\n    const response = pm.response.json();\r\n    pm.environment.set(\"id_user\", response._id);\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Hora do QA\",\r\n  \"email\": \"horadoqa.teste@example.com\",\r\n  \"password\": \"1q2w3e4r\",\r\n  \"administrador\": \"false\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/usuarios",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-003 - Buscar Usuário por ID (READ ONE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/usuarios/{{id_user}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios",
+                    "{{id_user}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-004 - Listar Usuários (READ ALL)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r",
+                      "    pm.response.to.have.status(200);\r",
+                      "});"
+                    ],
+                    "type": "text/javascript",
+                    "packages": {},
+                    "requests": {}
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/usuarios",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-005 - Atualizar Usuário para Administrador true (UPDATE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Successful PUT request\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Hora do QA - Atualizado\",\r\n  \"email\": \"horadoqa.qa@example.com\",\r\n  \"password\": \"1q2w3e4r\",\r\n  \"administrador\": \"true\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/usuarios/{{id_user}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios",
+                    "{{id_user}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-006 - Validar Alteração do Usuário (READ ONE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/usuarios/{{id_user}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios",
+                    "{{id_user}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-007 - Excluir Usuário (DELETE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/usuarios/{{id_user}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios",
+                    "{{id_user}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-008 - Validar Exclusão do Usuário",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"User Not Found\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([400, 404]);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/usuarios/{{id_user}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios",
+                    "{{id_user}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Teste de Contrato",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const response = pm.response.json();\r\n\r\n// Status HTTP\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Returned _id matches requested userId\", function () {\r\n    pm.expect(response._id).to.eql(\r\n        pm.environment.get(\"userId\")\r\n    );\r\n});\r\n\r\n// Contrato: campos obrigatórios existem\r\npm.test(\"Response contains required fields\", function () {\r\n    pm.expect(response).to.have.all.keys(\r\n        \"nome\",\r\n        \"email\",\r\n        \"password\",\r\n        \"administrador\",\r\n        \"_id\"\r\n    );\r\n});\r\n\r\n// Tipos dos campos\r\npm.test(\"Response fields have correct types\", function () {\r\n    pm.expect(response.nome).to.be.a(\"string\");\r\n    pm.expect(response.email).to.be.a(\"string\");\r\n    pm.expect(response.password).to.be.a(\"string\");\r\n    pm.expect(response.administrador).to.be.a(\"string\");\r\n    pm.expect(response._id).to.be.a(\"string\");\r\n});\r\n\r\n// Campos não podem estar vazios\r\npm.test(\"Required fields are not empty\", function () {\r\n    pm.expect(response.nome).to.not.be.empty;\r\n    pm.expect(response.email).to.not.be.empty;\r\n    pm.expect(response.password).to.not.be.empty;\r\n    pm.expect(response.administrador).to.not.be.empty;\r\n    pm.expect(response._id).to.not.be.empty;\r\n});\r\n\r\n// Administrador deve ser \"true\" ou \"false\"\r\npm.test(\"Administrador has valid value\", function () {\r\n    pm.expect(response.administrador).to.be.oneOf([\"true\", \"false\"]);\r\n});\r\n\r\n// Email deve possuir formato válido\r\npm.test(\"Email has valid format\", function () {\r\n    pm.expect(response.email).to.match(\r\n        /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/\r\n    );\r\n});\r\n"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/usuarios/{{Id_user}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios",
+                    "{{Id_user}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "LOGIN",
+          "item": [
+            {
+              "name": "CT-API-001 - Realizar Login com Sucesso",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const response = pm.response.json();\r\n\r\n// 1. Validar status\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// 2. Validar mensagem\r\npm.test(\"Login was successful\", function () {\r\n    pm.expect(response.message).to.eql(\"Login realizado com sucesso\");\r\n});\r\n\r\n// 3. Validar estrutura da resposta\r\npm.test(\"Authorization field exists\", function () {\r\n    pm.expect(response).to.have.property(\"authorization\");\r\n});\r\n\r\n// 4. Validar tipo\r\npm.test(\"Authorization is a string\", function () {\r\n    pm.expect(response.authorization).to.be.a(\"string\");\r\n});\r\n\r\n// 5. Validar formato do Bearer Token\r\npm.test(\"Authorization has Bearer format\", function () {\r\n    pm.expect(response.authorization).to.match(/^Bearer\\s.+$/);\r\n});\r\n\r\n// 6. Salvar o token\r\nif (response.authorization) {\r\n    pm.environment.set(\"token\", response.authorization);\r\n}\r\n"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"horadoqa.qa@example.com\",\r\n  \"password\": \"1q2w3e4r\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/login",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-002 - Realizar Login com Credenciais Inválidas",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"User Unauthorized\", function () {\r\n    pm.response.to.have.status(401);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"horadoqa.teste@example.com\",\r\n  \"password\": \"senha_errada\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/login",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Teste de Contrato",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const response = pm.response.json();\r\n\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Login was successful\", function () {\r\n    pm.expect(response.message).to.eql(\"Login realizado com sucesso\");\r\n});\r\n\r\npm.test(\"Authorization field exists\", function () {\r\n    pm.expect(response).to.have.property(\"authorization\");\r\n});\r\n\r\npm.test(\"Authorization has Bearer format\", function () {\r\n    pm.expect(response.authorization).to.match(/^Bearer\\s.+$/);\r\n});\r\n\r\n// Salva o token para as próximas requisições\r\npm.environment.set(\"token\", response.authorization);\r\n\r\npm.test(\"Token was saved\", function () {\r\n    pm.expect(pm.environment.get(\"token\")).to.eql(\r\n        response.authorization\r\n    );\r\n});\r\n"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"email\": \"horadoqa.qa@example.com\",\r\n  \"password\": \"1q2w3e4r\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/login",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "login"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "NEGATIVOS",
+          "item": [
+            {
+              "name": "CT-API-001 - Cadastro de Usuário com E-mail Duplicado",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Hora do QA\",\r\n  \"email\": \"horadoqa@example.com\",\r\n  \"password\": \"1q2w3e4r\",\r\n  \"administrador\": \"true\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/usuarios",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-002 - Buscar Usuário Inexistente",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/usuarios/abcdefghijklmnop",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "usuarios",
+                    "abcdefghijklmnop"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ],
+      "description": "# Cenários\n\n## Usuário\n\n---\n\n### CRUD\n\n- CREAT\n    \n- READ\n    \n- UPDATE\n    \n- DELETE\n    \n- Teste de Contrato - Validando dados do usuário cadastrado\n    \n\n---\n\n## LOGIN\n\n- Realizando o Login do Usuário\n    \n- Teste de Contrato - Validando o Login\n    \n\n---\n\n## NEGATIVOS\n\n- Validando os cenários negativos do Usuário"
+    },
+    {
+      "name": "product",
+      "item": [
+        {
+          "name": "CRUD",
+          "item": [
+            {
+              "name": "CT-API-001 - Cadastrar Produto (CREATE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Successful POST request\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\npm.test(\"Produto cadastrado com sucesso\", function () {\r\n    pm.response.to.have.status(201);\r\n});\r\n\r\nif (response._id) {\r\n    pm.environment.set(\"id_product\", response._id);\r\n}"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "{{token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Adesivo Hora do QA\",\r\n  \"preco\": 10,\r\n  \"descricao\": \"Adesivo Hora do QA\",\r\n  \"quantidade\": 50\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/produtos",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "produtos"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-002 - Buscar Produto por ID (READ ONE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/produtos/{{id_product}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "produtos",
+                    "{{id_product}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-003 - Atualizar Produto (UPDATE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Successful PUT request\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "{{token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n  \"nome\": \"Adesivo Hora do QA - Atualizado\",\r\n  \"preco\": 10,\r\n  \"descricao\": \"Adesivo Hora do QA\",\r\n  \"quantidade\": 50\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "https://serverest.dev/produtos/{{id_product}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "produtos",
+                    "{{id_product}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-004 - Validar Atualização do Produto",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/produtos/{{id_product}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "produtos",
+                    "{{id_product}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-005 - Excluir Produto (DELETE)",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "{{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "https://serverest.dev/produtos/{{id_product}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "produtos",
+                    "{{id_product}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "CT-API-006 - Validar Exclusão do Produto",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test(\"Status code is 400\", function () {\r\n    pm.response.to.have.status(400);\r\n});"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/produtos/{{id_product}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "produtos",
+                    "{{id_product}}"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Teste de Contrato",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const response = pm.response.json();\r\n\r\n// Status HTTP\r\npm.test(\"Status code é 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\n// Contrato do produto\r\npm.test(\"Contrato do produto está correto\", function () {\r\n\r\n    // Campos obrigatórios\r\n    pm.expect(response).to.have.property(\"nome\");\r\n    pm.expect(response).to.have.property(\"preco\");\r\n    pm.expect(response).to.have.property(\"descricao\");\r\n    pm.expect(response).to.have.property(\"quantidade\");\r\n    pm.expect(response).to.have.property(\"_id\");\r\n\r\n    // Tipos dos campos\r\n    pm.expect(response.nome).to.be.a(\"string\");\r\n    pm.expect(response.preco).to.be.a(\"number\");\r\n    pm.expect(response.descricao).to.be.a(\"string\");\r\n    pm.expect(response.quantidade).to.be.a(\"number\");\r\n    pm.expect(response._id).to.be.a(\"string\");\r\n\r\n    // Regras de negócio\r\n    pm.expect(response.nome).to.eql(\"Adesivo Hora do QA\");\r\n    pm.expect(response.preco).to.eql(10);\r\n    pm.expect(response.descricao).to.eql(\"Adesivo Hora do QA\");\r\n    pm.expect(response.quantidade).to.eql(50);\r\n\r\n    // ID não pode estar vazio\r\n    pm.expect(response._id).to.not.be.empty;\r\n});\r\n"
+                    ]
+                  }
+                }
+              ],
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "https://serverest.dev/produtos/{{id_product}}",
+                  "protocol": "https",
+                  "host": [
+                    "serverest",
+                    "dev"
+                  ],
+                  "path": [
+                    "produtos",
+                    "{{id_product}}"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "NEGATIVOS",
+          "item": []
+        }
+      ],
+      "description": "Cenários que envolvem o Produto."
+    },
+    {
+      "name": "Query Parameters",
+      "item": [
+        {
+          "name": "admin true",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\nconst usuarios = response.usuarios.map(usuario => ({\r\n    nome: usuario.nome,\r\n    email: usuario.email\r\n}));\r\n\r\nconsole.log(usuarios);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://serverest.dev/usuarios?administrador=true",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "administrador",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "admin false",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r\n});\r\n\r\nconst response = pm.response.json();\r\n\r\nconst usuarios = response.usuarios.map(usuario => ({\r\n    nome: usuario.nome,\r\n    email: usuario.email\r\n}));\r\n\r\nconsole.log(usuarios);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://serverest.dev/usuarios?administrador=false",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "administrador",
+                  "value": "false"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "name",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Successful GET request\", function () {\r\n    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r\n});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://serverest.dev/usuarios?nome=Hora do QA",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "Hora do QA"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://serverest.dev/usuarios?email=horadoqa.teste@example.com",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "horadoqa.teste@example.com"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "name+email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://serverest.dev/usuarios?nome=Hora do QA&email=horadoqa.teste@example.com",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "usuarios"
+              ],
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "Hora do QA"
+                },
+                {
+                  "key": "email",
+                  "value": "horadoqa.teste@example.com"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "product",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://serverest.dev/produtos?nome=Adesivo",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "produtos"
+              ],
+              "query": [
+                {
+                  "key": "nome",
+                  "value": "Adesivo"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "preco",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://serverest.dev/produtos?preco=10",
+              "protocol": "https",
+              "host": [
+                "serverest",
+                "dev"
+              ],
+              "path": [
+                "produtos"
+              ],
+              "query": [
+                {
+                  "key": "preco",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "Query Parameters: filtrar no servidor\n\nQuando você realizada uma requisição no servidor, o servidor recebe o filtro e retorna apenas os registros que atendem ao critério.\n\n``` bash\ncurl \"https://serverest.dev/usuarios?nome=João\"\n\n ```\n\n**Vantagens:**\n\n- Menos dados trafegando pela rede.\n    \n- Resposta mais rápida.\n    \n- Menor consumo de memória no cliente.\n    \n- A lógica de busca fica centralizada na API.\n    \n- Funciona bem com grandes volumes de dados.\n    \n\n**Prefira Query Parameters quando:**\n\n- A API oferece o filtro que você precisa.\n    \n- Você quer performance.\n    \n- O volume de dados pode crescer."
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "userId",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
