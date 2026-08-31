@@ -36,7 +36,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"nome\": \"Hora do QA\",\r\n  \"email\": \"horadoqa.teste@example.com\",\r\n  \"password\": \"1q2w3e4r\",\r\n  \"administrador\": \"false\"\r\n}",
+                  "raw": "{\r\n  \"nome\": \"Hora do QA\",\r\n  \"email\": \"horadoqa@example.com\",\r\n  \"password\": \"1q2w3e4r\",\r\n  \"administrador\": \"false\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -145,7 +145,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"nome\": \"Hora do QA - Atualizado\",\r\n  \"email\": \"horadoqa.qa@example.com\",\r\n  \"password\": \"1q2w3e4r\",\r\n  \"administrador\": \"true\"\r\n}",
+                  "raw": "{\r\n  \"nome\": \"Hora do QA - Atualizado\",\r\n  \"email\": \"horadoqa@example.com\",\r\n  \"password\": \"1q2w3e4r\",\r\n  \"administrador\": \"true\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -268,7 +268,7 @@
                   "script": {
                     "type": "text/javascript",
                     "exec": [
-                      "const response = pm.response.json();\r\n\r\n// Status HTTP\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Returned _id matches requested userId\", function () {\r\n    pm.expect(response._id).to.eql(\r\n        pm.environment.get(\"userId\")\r\n    );\r\n});\r\n\r\n// Contrato: campos obrigatórios existem\r\npm.test(\"Response contains required fields\", function () {\r\n    pm.expect(response).to.have.all.keys(\r\n        \"nome\",\r\n        \"email\",\r\n        \"password\",\r\n        \"administrador\",\r\n        \"_id\"\r\n    );\r\n});\r\n\r\n// Tipos dos campos\r\npm.test(\"Response fields have correct types\", function () {\r\n    pm.expect(response.nome).to.be.a(\"string\");\r\n    pm.expect(response.email).to.be.a(\"string\");\r\n    pm.expect(response.password).to.be.a(\"string\");\r\n    pm.expect(response.administrador).to.be.a(\"string\");\r\n    pm.expect(response._id).to.be.a(\"string\");\r\n});\r\n\r\n// Campos não podem estar vazios\r\npm.test(\"Required fields are not empty\", function () {\r\n    pm.expect(response.nome).to.not.be.empty;\r\n    pm.expect(response.email).to.not.be.empty;\r\n    pm.expect(response.password).to.not.be.empty;\r\n    pm.expect(response.administrador).to.not.be.empty;\r\n    pm.expect(response._id).to.not.be.empty;\r\n});\r\n\r\n// Administrador deve ser \"true\" ou \"false\"\r\npm.test(\"Administrador has valid value\", function () {\r\n    pm.expect(response.administrador).to.be.oneOf([\"true\", \"false\"]);\r\n});\r\n\r\n// Email deve possuir formato válido\r\npm.test(\"Email has valid format\", function () {\r\n    pm.expect(response.email).to.match(\r\n        /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/\r\n    );\r\n});\r\n"
+                      "const response = pm.response.json();\r\n\r\n// Status HTTP\r\npm.test(\"Status code is 200\", function () {\r\n    pm.response.to.have.status(200);\r\n});\r\n\r\npm.test(\"Returned _id matches requested userId\", function () {\r\n    pm.expect(response._id).to.eql(\r\n        pm.environment.get(\"id_user\")\r\n    );\r\n});\r\n\r\n// Contrato: campos obrigatórios existem\r\npm.test(\"Response contains required fields\", function () {\r\n    pm.expect(response).to.have.all.keys(\r\n        \"nome\",\r\n        \"email\",\r\n        \"password\",\r\n        \"administrador\",\r\n        \"_id\"\r\n    );\r\n});\r\n\r\n// Tipos dos campos\r\npm.test(\"Response fields have correct types\", function () {\r\n    pm.expect(response.nome).to.be.a(\"string\");\r\n    pm.expect(response.email).to.be.a(\"string\");\r\n    pm.expect(response.password).to.be.a(\"string\");\r\n    pm.expect(response.administrador).to.be.a(\"string\");\r\n    pm.expect(response._id).to.be.a(\"string\");\r\n});\r\n\r\n// Campos não podem estar vazios\r\npm.test(\"Required fields are not empty\", function () {\r\n    pm.expect(response.nome).to.not.be.empty;\r\n    pm.expect(response.email).to.not.be.empty;\r\n    pm.expect(response.password).to.not.be.empty;\r\n    pm.expect(response.administrador).to.not.be.empty;\r\n    pm.expect(response._id).to.not.be.empty;\r\n});\r\n\r\n// Administrador deve ser \"true\" ou \"false\"\r\npm.test(\"Administrador has valid value\", function () {\r\n    pm.expect(response.administrador).to.be.oneOf([\"true\", \"false\"]);\r\n});\r\n\r\n// Email deve possuir formato válido\r\npm.test(\"Email has valid format\", function () {\r\n    pm.expect(response.email).to.match(\r\n        /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/\r\n    );\r\n});\r\n"
                     ]
                   }
                 }
@@ -277,7 +277,7 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "https://serverest.dev/usuarios/{{Id_user}}",
+                  "raw": "https://serverest.dev/usuarios/{{id_user}}",
                   "protocol": "https",
                   "host": [
                     "serverest",
@@ -285,7 +285,7 @@
                   ],
                   "path": [
                     "usuarios",
-                    "{{Id_user}}"
+                    "{{id_user}}"
                   ]
                 }
               },
@@ -319,7 +319,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"email\": \"horadoqa.qa@example.com\",\r\n  \"password\": \"1q2w3e4r\"\r\n}",
+                  "raw": "{\r\n  \"email\": \"horadoqa@example.com\",\r\n  \"password\": \"1q2w3e4r\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -407,7 +407,7 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\r\n  \"email\": \"horadoqa.qa@example.com\",\r\n  \"password\": \"1q2w3e4r\"\r\n}",
+                  "raw": "{\r\n  \"email\": \"horadoqa@example.com\",\r\n  \"password\": \"1q2w3e4r\"\r\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -511,7 +511,7 @@
           ]
         }
       ],
-      "description": "# Cenários\n\n## Usuário\n\n---\n\n### CRUD\n\n- CREAT\n    \n- READ\n    \n- UPDATE\n    \n- DELETE\n    \n- Teste de Contrato - Validando dados do usuário cadastrado\n    \n\n---\n\n## LOGIN\n\n- Realizando o Login do Usuário\n    \n- Teste de Contrato - Validando o Login\n    \n\n---\n\n## NEGATIVOS\n\n- Validando os cenários negativos do Usuário"
+      "description": "# Documentação de Testes de API — Usuário\n\n## 1\\. Cenários de Usuário\n\nEsta seção contempla os cenários de testes relacionados ao gerenciamento de usuários, incluindo as operações de **CRUD**, testes de contrato e validações das respostas da API.\n\n### 1.1 CRUD de Usuário\n\nValidação das principais operações de gerenciamento de usuários:\n\n- **Create** — Cadastro de um novo usuário.\n    \n- **Read** — Consulta dos dados de um usuário cadastrado.\n    \n- **Update** — Atualização dos dados de um usuário existente.\n    \n- **Delete** — Exclusão de um usuário cadastrado.\n    \n\n### 1.2 Teste de Contrato — Usuário\n\nValidação do contrato da API após o cadastro do usuário, garantindo que:\n\n- A estrutura da resposta esteja de acordo com o contrato definido.\n    \n- Os campos obrigatórios estejam presentes.\n    \n- Os tipos de dados estejam corretos.\n    \n- Os valores retornados estejam de acordo com o esperado.\n    \n- O status code retornado seja o esperado para a operação.\n    \n\n---\n\n## 2\\. Login\n\nEsta seção contempla os cenários relacionados à autenticação do usuário.\n\n### 2.1 Realizando o Login do Usuário\n\nValidação do processo de autenticação utilizando as credenciais de um usuário previamente cadastrado.\n\nSão verificadas as condições necessárias para que o usuário consiga realizar o login com sucesso.\n\n### 2.2 Teste de Contrato — Login\n\nValidação do contrato da resposta de autenticação, garantindo que:\n\n- A estrutura da resposta esteja de acordo com o contrato definido.\n    \n- Os campos esperados estejam presentes.\n    \n- Os tipos de dados estejam corretos.\n    \n- O token ou informações de autenticação sejam retornados corretamente.\n    \n- O status code esteja de acordo com o cenário esperado.\n    \n\n---\n\n## 3\\. Cenários Negativos\n\nEsta seção contempla os testes destinados à validação do comportamento da API diante de requisições inválidas ou condições inesperadas.\n\n### 3.1 Validação dos Cenários Negativos do Usuário\n\nSão contemplados cenários como:\n\n- Cadastro com dados inválidos.\n    \n- Cadastro com campos obrigatórios ausentes.\n    \n- Consulta de usuário inexistente.\n    \n- Atualização de usuário inexistente.\n    \n- Exclusão de usuário inexistente.\n    \n- Tentativa de cadastro com dados já existentes.\n    \n- Login com credenciais inválidas.\n    \n- Login sem informações obrigatórias.\n    \n- Envio de formatos ou tipos de dados inválidos.\n    \n\nO objetivo é garantir que a API trate corretamente as entradas inválidas e retorne os **status codes** e mensagens de erro esperados."
     },
     {
       "name": "product",
@@ -786,7 +786,7 @@
           "item": []
         }
       ],
-      "description": "Cenários que envolvem o Produto."
+      "description": "# Documentação de Testes de API — Produto\n\n## 1\\. Cenários de Produto\n\nEsta seção contempla os cenários de testes relacionados ao gerenciamento de produtos, incluindo as operações de **CRUD**, testes de contrato e validações das respostas da API.\n\n### 1.1 CRUD de Produto\n\nValidação das principais operações de gerenciamento de produtos:\n\n- **Create** — Cadastro de um novo produto.\n    \n- **Read** — Consulta dos dados de um produto cadastrado.\n    \n- **Update** — Atualização dos dados de um produto existente.\n    \n- **Delete** — Exclusão de um produto cadastrado.\n    \n\n### 1.2 Teste de Contrato — Produto\n\nValidação do contrato da API após o cadastro e consulta do produto, garantindo que:\n\n- A estrutura da resposta esteja de acordo com o contrato definido.\n    \n- Os campos obrigatórios estejam presentes.\n    \n- Os tipos de dados estejam corretos.\n    \n- Os valores retornados estejam de acordo com o esperado.\n    \n- O status code esteja de acordo com a operação realizada.\n    \n\n---\n\n## 2\\. Cenários de Consulta de Produto\n\nEsta seção contempla os testes relacionados à recuperação das informações dos produtos.\n\n### 2.1 Consulta de Produto\n\nValidação da consulta de produtos cadastrados, verificando:\n\n- Retorno correto dos dados do produto.\n    \n- Consulta por identificador.\n    \n- Retorno de produtos existentes.\n    \n- Estrutura e conteúdo da resposta.\n    \n- Status code esperado.\n    \n\n### 2.2 Teste de Contrato — Consulta de Produto\n\nValidação do contrato da resposta da consulta, garantindo:\n\n- Presença dos campos esperados.\n    \n- Tipos de dados corretos.\n    \n- Estrutura correta do objeto ou lista de produtos.\n    \n- Integridade das informações retornadas.\n    \n- Status code esperado.\n    \n\n---\n\n## 3\\. Cenários Negativos\n\nEsta seção contempla os testes destinados à validação do comportamento da API diante de requisições inválidas ou condições inesperadas relacionadas aos produtos.\n\n### 3.1 Validação dos Cenários Negativos do Produto\n\nSão contemplados cenários como:\n\n- Cadastro de produto com dados inválidos.\n    \n- Cadastro sem campos obrigatórios.\n    \n- Cadastro com preço inválido.\n    \n- Cadastro com quantidade inválida.\n    \n- Consulta de produto inexistente.\n    \n- Consulta utilizando identificador inválido.\n    \n- Atualização de produto inexistente.\n    \n- Atualização com dados inválidos.\n    \n- Exclusão de produto inexistente.\n    \n- Envio de tipos de dados incompatíveis.\n    \n- Envio de campos com formatos inválidos.\n    \n\nO objetivo é garantir que a API trate corretamente as entradas inválidas e retorne os **status codes**, mensagens e estruturas de erro esperados.\n\n---\n\n## 4\\. Validações Gerais\n\nDurante a execução dos testes no **Postman**, devem ser validados:\n\n- **Status Code** — Código HTTP retornado pela API.\n    \n- **Response Body** — Conteúdo e estrutura da resposta.\n    \n- **Schema** — Conformidade com o contrato definido.\n    \n- **Headers** — Presença e valores esperados.\n    \n- **Tempo de resposta** — Atendimento ao limite estabelecido para a API.\n    \n- **Regras de negócio** — Comportamento esperado para cada operação.\n    \n- **Mensagens de erro** — Clareza e conformidade para cenários negativos."
     },
     {
       "name": "Query Parameters",
@@ -1004,7 +1004,7 @@
           "response": []
         }
       ],
-      "description": "Query Parameters: filtrar no servidor\n\nQuando você realizada uma requisição no servidor, o servidor recebe o filtro e retorna apenas os registros que atendem ao critério.\n\n``` bash\ncurl \"https://serverest.dev/usuarios?nome=João\"\n\n ```\n\n**Vantagens:**\n\n- Menos dados trafegando pela rede.\n    \n- Resposta mais rápida.\n    \n- Menor consumo de memória no cliente.\n    \n- A lógica de busca fica centralizada na API.\n    \n- Funciona bem com grandes volumes de dados.\n    \n\n**Prefira Query Parameters quando:**\n\n- A API oferece o filtro que você precisa.\n    \n- Você quer performance.\n    \n- O volume de dados pode crescer."
+      "description": "# Query Parameters: filtrar no servidor\n\nQuando você realizada uma requisição no servidor, o servidor recebe o filtro e retorna apenas os registros que atendem ao critério.\n\n``` bash\ncurl \"https://serverest.dev/usuarios?nome=João\"\n\n ```\n\n**Vantagens:**\n\n- Menos dados trafegando pela rede.\n    \n- Resposta mais rápida.\n    \n- Menor consumo de memória no cliente.\n    \n- A lógica de busca fica centralizada na API.\n    \n- Funciona bem com grandes volumes de dados.\n    \n\n**Prefira Query Parameters quando:**\n\n- A API oferece o filtro que você precisa.\n    \n- Você quer performance.\n    \n- O volume de dados pode crescer."
     }
   ],
   "event": [
