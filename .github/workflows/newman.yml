@@ -75,7 +75,7 @@ jobs:
           TIMESTAMP=${{ steps.set-timestamp.outputs.DATE }}
           mkdir -p reports/$TIMESTAMP
           cd tmp
-          npx newman run ../postman/serverest.json \
+          npx newman run ../postman/TesteApiServeRest.postman_collection.json \
             -r htmlextra,json \
             --reporter-htmlextra-export ../reports/$TIMESTAMP/index.html \
             --reporter-json-export ../reports/$TIMESTAMP/report.json \
